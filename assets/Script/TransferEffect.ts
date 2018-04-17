@@ -1,5 +1,5 @@
-import Gray from './Gray';
-import Transfer from './Transfer';
+import VF from './VertAndFrag';
+import Transfer from './TransferShader';
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -9,8 +9,7 @@ export default class Helloworld extends cc.Component {
     bg: cc.Node = null;
 
     @property
-    nextSceneStr: string = 'Effect1';
-
+    isAllChildrenUse: boolean = false;
 
     program: cc.GLProgram;
     time: number = 0;
@@ -21,54 +20,10 @@ export default class Helloworld extends cc.Component {
         
         
     }
-    nextScene() {
-        cc.director.loadScene(this.nextSceneStr);
-    }
 
-    useShader() {
-        this.program = new cc.GLProgram();
-        var vert = Gray.vert;
-        var frag = Gray.frag
-        if (cc.sys.isNative) {
-            cc.log("use native GLProgram")
-            this.program.initWithString(vert, frag);
-            this.program.link();
-            this.program.updateUniforms();
-        }else{
-            this.program.initWithVertexShaderByteArray(vert, frag);
-            this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_POSITION, cc.macro.VERTEX_ATTRIB_POSITION);
-            this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_COLOR, cc.macro.VERTEX_ATTRIB_COLOR);
-            this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_TEX_COORD, cc.macro.VERTEX_ATTRIB_TEX_COORDS);
-            this.program.link();
-            this.program.updateUniforms();
-        }
-        this.setProgram(this.node._sgNode
-            , this.program);
-    }
-
-    setProgram(node:any, program:cc.GLProgram) {
-
-        if (cc.sys.isNative) {
-            var glProgram_state = cc.GLProgramState.getOrCreateWithGLProgram(program);
-            node.setGLProgramState(glProgram_state);
-        }else{
-            node.setShaderProgram(program);    
-        }
-
-        var children = node.children;
-        if (!children)
-            return;
-    
-        for (var i = 0; i < children.length; i++)
-        {
-            this.setProgram(children[i], program);
-        }
-        
-    }
 
     testShaderB() {
-        cc.log('test shader');
-        let bgSp: cc.Sprite = this.bg.getComponent(cc.Sprite);
+        let bgSp: cc.Sprite = this.node.getComponent(cc.Sprite);
         this.program = new cc.GLProgram();
         if (!cc.sys.isNative) {
             this.program.initWithVertexShaderByteArray(Transfer.vert, Transfer.frag);
@@ -89,9 +44,32 @@ export default class Helloworld extends cc.Component {
             var glProgram_state = cc.GLProgramState.getOrCreateWithGLProgram(this.program);
             glProgram_state.setUniformFloat("time", this.time);
         }
-        bgSp._sgNode.setShaderProgram(this.program);
+        // bgSp._sgNode.setShaderProgram(this.program);
+        // this.enabled = true;
+        if (this.isAllChildrenUse) {
+            this.setProgram(this.node._sgNode, this.program);
+        } else {
+            this.setProgram(this.node.getComponent(cc.Sprite)._sgNode, this.program);
+        }
         this.enabled = true;
     }
+
+    setProgram(node: any, program: any) {
+        if (cc.sys.isNative) {
+            var glProgram_state = cc.GLProgramState.getOrCreateWithGLProgram(program);
+            node.setGLProgramState(glProgram_state);
+        } else {
+            node.setShaderProgram(program);
+        }
+        var children = node.children;
+        if (!children)
+            return;
+
+        for (var i = 0; i < children.length; i++) {
+            this.setProgram(children[i], program);
+        }
+    }
+
 
     update(dt) {
         this.time += 0.02;

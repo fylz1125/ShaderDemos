@@ -4,7 +4,7 @@ const {ccclass, property} = cc._decorator;
 export default class NewClass extends cc.Component {
 
     @property
-    currentSceneName: string = '';
+    currentSceneIndex: number = 0;
 
     @property(cc.Label)
     instructionLabel: cc.Label = null;
@@ -12,13 +12,15 @@ export default class NewClass extends cc.Component {
     @property(cc.ScrollView)
     readme: cc.ScrollView = null;
 
+    sceneList: string[] = ['GrayEffect','TransferEffect'];
+
     // 初始化
     onLoad() {
         cc.director.setDisplayStats(true);
         cc.game.addPersistRootNode(this.node);
 
-        this.loadInstruction(this.currentSceneName);
-        cc.log('scene name: ' + cc.director.getScene().name);
+        let currentSceneName = this.sceneList[this.currentSceneIndex];
+        this.loadInstruction(currentSceneName);
         
     }
 
@@ -26,6 +28,7 @@ export default class NewClass extends cc.Component {
         let self = this;
         cc.loader.loadRes('readme/' + url, function(err, txt) {
             if (err) {
+                self.instructionLabel.string = '加载说明文件出错';
                 cc.log('加载说明文件出错');
                 return;
             }
@@ -41,18 +44,28 @@ export default class NewClass extends cc.Component {
     }
 
     nextScene() {
-        cc.log('next scene');
-        cc.director.loadScene('helloworld',this.onLoadSceneFinish.bind(this));
+        this.currentSceneIndex++;
+        if (this.currentSceneIndex >= this.sceneList.length) {
+            this.currentSceneIndex = this.sceneList.length - 1;
+            return;
+        }
+        let scene = this.sceneList[this.currentSceneIndex];
+        cc.director.loadScene(scene,this.onLoadSceneFinish.bind(this));
     }
 
     onLoadSceneFinish() {
-        this.currentSceneName = cc.director.getScene().name;
-        this.loadInstruction(this.currentSceneName);
+        let rdfile = this.sceneList[this.currentSceneIndex];
+        this.loadInstruction(rdfile);
     }
 
     preScene() {
-        // cc.log('previous scene');
-        cc.log('current scene ' + this.currentSceneName);
+        this.currentSceneIndex--;
+        if (this.currentSceneIndex < 0) {
+            this.currentSceneIndex = 0;
+            return;
+        }
+        let scene = this.sceneList[this.currentSceneIndex];
+        cc.director.loadScene(scene,this.onLoadSceneFinish.bind(this));
     }
 
 

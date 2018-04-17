@@ -9,7 +9,7 @@ export default class Helloworld extends cc.Component {
     program: cc.GLProgram;
 
     onLoad() {
-        // this.useShader();
+        this.grayShader();
     }
 
     // 变灰shader
