@@ -17,11 +17,11 @@ export default class Helloworld extends cc.Component {
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
             cc.log("use native GLProgram")
-            this.program.initWithString(VertAndFrag.defalut_vert_nomvp, VertAndFrag.black_white_frag);
+            this.program.initWithString(VertAndFrag.default_vert, VertAndFrag.gray_frag);
             this.program.link();
             this.program.updateUniforms();
         } else {
-            this.program.initWithVertexShaderByteArray(VertAndFrag.default_vert, VertAndFrag.black_white_frag);
+            this.program.initWithVertexShaderByteArray(VertAndFrag.default_vert, VertAndFrag.gray_frag);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_POSITION, cc.macro.VERTEX_ATTRIB_POSITION);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_COLOR, cc.macro.VERTEX_ATTRIB_COLOR);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_TEX_COORD, cc.macro.VERTEX_ATTRIB_TEX_COORDS);

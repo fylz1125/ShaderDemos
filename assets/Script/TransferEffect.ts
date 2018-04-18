@@ -1,5 +1,5 @@
 import VF from './VertAndFrag';
-import Transfer from './TransferShader';
+import Transfer from './TransferFrag';
 const { ccclass, property } = cc._decorator;
 
 @ccclass
