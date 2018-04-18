@@ -16,7 +16,6 @@ export default class Helloworld extends cc.Component {
     grayShader() {
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
-            cc.log("use native GLProgram")
             this.program.initWithString(VertAndFrag.default_vert, VertAndFrag.gray_frag);
             this.program.link();
             this.program.updateUniforms();
