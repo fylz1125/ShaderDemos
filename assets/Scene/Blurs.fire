@@ -62,17 +62,17 @@
         "__id__": 6
       },
       {
-        "__id__": 9
+        "__id__": 10
       },
       {
-        "__id__": 12
+        "__id__": 13
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 15
+        "__id__": 16
       }
     ],
     "_prefab": null,
@@ -219,6 +219,9 @@
       },
       {
         "__id__": 8
+      },
+      {
+        "__id__": 9
       }
     ],
     "_prefab": null,
@@ -311,6 +314,16 @@
     "_originalHeight": 0
   },
   {
+    "__type__": "3c908SX2u5DfIEt7iumNEPE",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 6
+    },
+    "_enabled": true,
+    "blurMode": 0
+  },
+  {
     "__type__": "cc.Node",
     "_name": "feofox",
     "_objFlags": 0,
@@ -322,10 +335,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 10
+        "__id__": 11
       },
       {
-        "__id__": 11
+        "__id__": 12
       }
     ],
     "_prefab": null,
@@ -370,7 +383,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 9
+      "__id__": 10
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -396,7 +409,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 9
+      "__id__": 10
     },
     "_enabled": true,
     "isAlignOnce": true,
@@ -429,10 +442,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 13
+        "__id__": 14
       },
       {
-        "__id__": 14
+        "__id__": 15
       }
     ],
     "_prefab": null,
@@ -477,7 +490,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 12
+      "__id__": 13
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -503,7 +516,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 12
+      "__id__": 13
     },
     "_enabled": true,
     "isAlignOnce": true,
