@@ -21,12 +21,10 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     bluramount = (iMouse.x/iResolution.x)/10.;
     }
 
-    // float dists = 5.;
+
     vec3 blurred_image = vec3(0.);
     #define repeats 60.
     for (float i = 0.; i < repeats; i++) { 
-        //Older:
-        // vec2 q = vec2(cos(degrees((grid(i,dists)/repeats)*360.)),sin(degrees((grid(i,dists)/repeats)*360.))) * (1./(1.+mod(i,dists)));
         vec2 q = vec2(cos(degrees((i/repeats)*360.)),sin(degrees((i/repeats)*360.))) *  (rand(vec2(i,uv.x+uv.y))+bluramount); 
         vec2 uv2 = uv+(q*bluramount);
         blurred_image += draw(uv2)/2.;
