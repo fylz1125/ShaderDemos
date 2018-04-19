@@ -78,7 +78,6 @@ export default class Helloworld extends cc.Component {
             } else {
                 var glProgram_state = cc.GLProgramState.getOrCreateWithGLProgram(this.program);
                 glProgram_state.setUniformFloat("time", this.time);
-
             }
         }
     }
