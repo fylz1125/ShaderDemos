@@ -23,7 +23,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     // vec2 uv = v_texCoord.xy;
     vec2 uv = (fragCoord.xy / iResolution.xy);
     // 时间函数
-    float bluramount = 0.01; //sin(time)*0.01;
+    float bluramount = 0.005; //sin(time)*0.01;
     // if (iMouse.w >= 1.) {
     //     bluramount = (iMouse.x/iResolution.x)/10.;
     // }
@@ -34,7 +34,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
         vec2 uv2 = uv+(q*bluramount);
         blurred_image += draw(uv2)/2.;
         //One more to hide the noise.
-        // q = vec2(cos(degrees((i/repeats)*360.)),sin(degrees((i/repeats)*360.))) *  (rand(vec2(i+2.,uv.x+uv.y+24.))+bluramount); 
+        q = vec2(cos(degrees((i/repeats)*360.)),sin(degrees((i/repeats)*360.))) *  (rand(vec2(i+2.,uv.x+uv.y+24.))+bluramount); 
         uv2 = uv+(q*bluramount);
         blurred_image += draw(uv2)/2.;
     }
