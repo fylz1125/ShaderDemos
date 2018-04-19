@@ -8,13 +8,14 @@ export default class NewClass extends cc.Component {
     @property
     isDynamic: boolean = false;
 
+    @property
+    isAllChildrenUse: boolean = false; 
+
     program: cc.GLProgram;
-    time: number = 0.0;
-    resolution = { x: 0.0, y: 0.0 };
+    bluramount: number = 0.01;
 
     onLoad() {
-        this.resolution.x = this.node.getContentSize().width;
-        this.resolution.y = this.node.getContentSize().height;
+
         this.userBlur();
     }
 
@@ -37,12 +38,16 @@ export default class NewClass extends cc.Component {
 
         if (cc.sys.isNative) {
             var glProgram_state = cc.GLProgramState.getOrCreateWithGLProgram(this.program);
-            glProgram_state.setUniformVec2("resolution", this.resolution);
+            glProgram_state.setUniformFloat("bluramount", this.bluramount);
         } else {
-            let rl = this.program.getUniformLocationForName("resolution");
-            this.program.setUniformLocationWith2f(rl, this.resolution.x, this.resolution.y);
+            let ba = this.program.getUniformLocationForName("bluramount");
+            this.program.setUniformLocationWith1f(ba, this.bluramount);
         }
-        this.setProgram(this.node.getComponent(cc.Sprite)._sgNode, this.program);
+        if (this.isAllChildrenUse) {
+            this.setProgram(this.node._sgNode, this.program);
+        } else {
+            this.setProgram(this.node.getComponent(cc.Sprite)._sgNode, this.program);
+        };
     }
 
     setProgram(node: any, program: any) {
@@ -51,6 +56,13 @@ export default class NewClass extends cc.Component {
             node.setGLProgramState(glProgram_state);
         } else {
             node.setShaderProgram(program);
+        }
+        var children = node.children;
+        if (!children)
+            return;
+
+        for (var i = 0; i < children.length; i++) {
+            this.setProgram(children[i], program);
         }
     }
 

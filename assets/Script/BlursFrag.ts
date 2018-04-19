@@ -3,8 +3,7 @@ export default class BlursFrag {
 #ifdef GL_ES
 precision mediump float;
 #endif
-uniform vec2 resolution;
-varying vec4 v_fragmentColor;
+uniform float bluramount;
 varying vec2 v_texCoord;
 vec3 draw(vec2 uv) {
     return texture2D(CC_Texture0,uv).rgb; 
@@ -18,7 +17,6 @@ float rand(vec2 co){
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
     vec2 uv = v_texCoord.xy;
-    float bluramount = 0.005;
     vec3 blurred_image = vec3(0.);
     #define repeats 60.
     for (float i = 0.; i < repeats; i++) { 
