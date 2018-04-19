@@ -1,83 +1,65 @@
 export default class BlursFrag {
     static blursFrag = `
+#ifdef GL_ES
+precision mediump float;
+#endif
+uniform vec2 resolution;
+varying vec4 v_fragmentColor;
+varying vec2 v_texCoord;
+vec3 draw(vec2 uv) {
+    return texture2D(CC_Texture0,uv).rgb; 
+}
+float grid(float var, float size) {
+    return floor(var*size)/size;
+}
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
+void mainImage( out vec4 fragColor, in vec2 fragCoord )
+{
+    vec2 uv = v_texCoord.xy;
+    float bluramount = 0.01;
+    vec3 blurred_image = vec3(0.);
+    #define repeats 60.
+    for (float i = 0.; i < repeats; i++) { 
+        vec2 q = vec2(cos(degrees((i/repeats)*360.)),sin(degrees((i/repeats)*360.))) *  (rand(vec2(i,uv.x+uv.y))+bluramount); 
+        vec2 uv2 = uv+(q*bluramount);
+        blurred_image += draw(uv2)/2.;
+        q = vec2(cos(degrees((i/repeats)*360.)),sin(degrees((i/repeats)*360.))) *  (rand(vec2(i+2.,uv.x+uv.y+24.))+bluramount); 
+        uv2 = uv+(q*bluramount);
+        blurred_image += draw(uv2)/2.;
+    }
+    blurred_image /= repeats;
+    fragColor = vec4(blurred_image,1.0);
+}
+void main()
+{
+    mainImage(gl_FragColor, gl_FragCoord.xy);
+}
+    `;
+    
+    static edgeFrag = `
     #ifdef GL_ES
     precision mediump float;
     #endif
-    uniform float mode;//0普通模糊 1高斯模糊 2动感模糊
-    uniform vec2 resolution;
-    uniform float GlowRange; //模糊半径
-    uniform float GlowExpand; //动感模糊角度
-    varying vec4 v_fragmentColor;
     varying vec2 v_texCoord;
-    void main()                      
-    {    
-        vec4 clraverge = vec4(0,0,0,0);                               
-        if( GlowRange > 0.0 )                         
-        {   
-            if(mode==2)
+    uniform float widthStep;
+    uniform float heightStep;
+    uniform float strength;
+    const float blurRadius = 2.0;
+    const float blurPixels = (blurRadius * 2.0 + 1.0) * (blurRadius * 2.0 + 1.0);
+    void main()
+    {
+        vec3 sumColor = vec3(0.0, 0.0, 0.0);
+        for(float fy = -blurRadius; fy <= blurRadius; ++fy)
+        {
+            for(float fx = -blurRadius; fx <= blurRadius; ++fx)
             {
-            float samplerPre =1;                               
-            float range=GlowRange*3;
-            float rad=GlowExpand;
-                for( float j = 1; j<=range ; j += samplerPre )  
-                {  
-                float dx = 0.002*cos( rad );
-                float dy = 0.002*sin( rad );
-                vec2  samplerTexCoord = vec2( v_texCoord.x + j*dx, v_texCoord.y+j*dy );  
-                vec2 samplerTexCoord1 = vec2( v_texCoord.x - j*dx,v_texCoord.y-j*dy );        
-                if( samplerTexCoord.x < 0.0 || samplerTexCoord.x > 1.0 
-                    ||samplerTexCoord1.x < 0.0 || samplerTexCoord1.x > 1.0
-                    ||samplerTexCoord.y < 0.0 || samplerTexCoord.y > 1.0 
-                    ||samplerTexCoord1.y < 0.0 || samplerTexCoord1.y > 1.0)
-                    {
-                    continue;
-                    }
-                    vec4 tc= texture2D( CC_Texture0, samplerTexCoord );
-                    vec4 tc1= texture2D( CC_Texture0, samplerTexCoord1 );
-                    clraverge+=tc; 
-                    clraverge+=tc1;      
-                } 
-                clraverge/=(range*2);
+                vec2 coord = vec2(fx * widthStep, fy * heightStep);
+                sumColor += texture2D(CC_Texture0, v_texCoord + coord).rgb;
             }
-            else
-            {  
-            float samplerPre = 3.0;
-            float radiusX = 1.0 / TextureSize.x;             
-            float radiusY = 1.0 / TextureSize.y;         
-            float count = 0.0;   
-            float  range=GlowRange*2.0;
-            for( float i = -range ; i <= range ; i += samplerPre )                                                            
-                {
-                for( float j = -range ; j <= range ; j += samplerPre )                                                        
-                {    
-                    float nx=j;
-                    float ny=i;
-                    float q=range/1.75;
-                    float  gr=(1.0/(2*3.14159*q*q))*exp(-(nx*nx+ny*ny)/(2*q*q))*9.0;   
-                    vec2 samplerTexCoord = vec2( v_texCoord.x + j * radiusX , v_texCoord.y + i * radiusY );  
-                    if( samplerTexCoord.x < 0.0)
-                    samplerTexCoord.x=-samplerTexCoord.x;
-                    else if(samplerTexCoord.x > 1.0)
-                    samplerTexCoord.x =2-samplerTexCoord.x;
-
-                    if(samplerTexCoord.y < 0.0)
-                    samplerTexCoord.y=-samplerTexCoord.y;
-                    else if(samplerTexCoord.y > 1.0)
-                    samplerTexCoord.y =2-samplerTexCoord.y;
-
-                    vec4 tc= texture2D( CC_Texture0, samplerTexCoord ); 
-                    if(mode==0)
-                    clraverge+=tc;  
-                    else  if(mode==1)
-                    clraverge+=tc*gr;  
-                    count+=1;    
-                }       
-                }  
-                if(mode==0)
-                clraverge/=count;   
-            } 
-        }  
-        gl_FragColor =clraverge;
-    }
-    `;
+        }
+        gl_FragColor = vec4(mix(texture2D(CC_Texture0, v_texCoord).rgb, sumColor / blurPixels, strength), 1.0);
+    }`
+    ;
 }

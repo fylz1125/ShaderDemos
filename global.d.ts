@@ -46,9 +46,26 @@ declare module cc {
          */
         use();
 
+        /**
+         * calls retrieves the named uniform location for this shader program.
+         * @param name 
+         */
         getUniformLocationForName(name: string): number;
 
+        /**
+         * calls glUniform1f only if the values are different than the previous call for this same shader program.
+         * @param location 
+         * @param f1 
+         */
         setUniformLocationWith1f(location, f1);
+
+        /**
+         * calls glUniform2f only if the values are different than the previous call for this same shader program.
+         * @param location 
+         * @param f1 
+         * @param f2 
+         */
+        setUniformLocationWith2f(location,f1,f2)
     }
 
     export class GLProgramState{
