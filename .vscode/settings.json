@@ -1,6 +1,8 @@
 {
     "shader-toy.textures": {
-        "0": "file:///D:/cocos/ShaderDemo/assets/resources/startbg.jpg"
-        // "0": "file:///E:/cocos/ShaderDemos/assets/resources/startbg.jpg"
-    }
+        "0": "file:///D:/cocos/ShaderDemo/assets/resources/startbg.jpg",
+        "1": "file:///E:/cocos/ShaderDemos/assets/resources/startbg.jpg",
+        "2": "file:///E:/cocos/ShaderDemos/assets/resources/galaxy.mp3"
+    },
+    "vsicons.presets.angular": true
 }
