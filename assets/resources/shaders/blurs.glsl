@@ -1,81 +1,45 @@
-#ifdef GL_ES
-precision mediump float;
-#endif
+vec3 draw(vec2 uv) {
+    // return texture2D(iChannel0,vec2(uv.x,1.-uv.y)).rgb; // 上下翻转
+    return texture2D(iChannel0,uv).rgb;  
+}
 
-// uniform float mode;//0普通模糊 1高斯模糊 2动感模糊
-// uniform vec2 resolution;
-// uniform float GlowRange; //模糊半径
-// uniform float GlowExpand; //动感模糊角度
-#define GlowRange 3.0
-// varying vec4 v_fragmentColor;
-// varying vec2 gl_FragCoord;
-void main()                      
-{  const float mode=1.0;
-  // const float GlowRange=10.0;
-  const float GlowExpand = 2.0;
-    vec4 clraverge = vec4(0,0,0,0);                               
-    if( GlowRange > 0.0 )
-    {   
-        if(mode==2.0)
-        {
-        float samplerPre =1.0;                               
-        float range = GlowRange*3.0;
-        float rad=GlowExpand;
-            for( float j = 1.0; j<=range ; j += samplerPre )  
-            {  
-            float dx = 0.002*cos( rad );
-            float dy = 0.002*sin( rad );
-            vec2  samplerTexCoord = vec2( gl_FragCoord.x + j*dx, gl_FragCoord.y+j*dy );  
-            vec2 samplerTexCoord1 = vec2( gl_FragCoord.x - j*dx,gl_FragCoord.y-j*dy );        
-            if( samplerTexCoord.x < 0.0 || samplerTexCoord.x > 1.0 
-                ||samplerTexCoord1.x < 0.0 || samplerTexCoord1.x > 1.0
-                ||samplerTexCoord.y < 0.0 || samplerTexCoord.y > 1.0 
-                ||samplerTexCoord1.y < 0.0 || samplerTexCoord1.y > 1.0)
-                {
-                continue;
-                }
-                vec4 tc= texture2D( iChannel0, samplerTexCoord );
-                vec4 tc1= texture2D( iChannel0, samplerTexCoord1 );
-                clraverge+=tc; 
-                clraverge+=tc1;      
-            } 
-            clraverge/=(range*2.0);
-        }else{  
-        float samplerPre = 3.0;
-        float radiusX = 1.0 / iResolution.x;             
-        float radiusY = 1.0 / iResolution.y;         
-        float count = 0.0;   
-        float range1 = GlowRange*2.0;
-        for( float i = -3.0 ; i <= 6.0 ; i += 1.0 )                                                            
-            {
-            for( float j = -3.0 ; j <= 6.0 ; j += 1.0 )                                                        
-            {    
-                float nx=j;
-                float ny=i;
-                float q=range1/1.75;
-                float  gr=(1.0/(2.0*3.14159*q*q))*exp(-(nx*nx+ny*ny)/(2.0*q*q))*9.0;   
-                vec2 samplerTexCoord = vec2( gl_FragCoord.x + j * radiusX , gl_FragCoord.y + i * radiusY );  
-                if( samplerTexCoord.x < 0.0)
-                samplerTexCoord.x=-samplerTexCoord.x;
-                else if(samplerTexCoord.x > 1.0)
-                samplerTexCoord.x =2.0-samplerTexCoord.x;
+float grid(float var, float size) {
+    return floor(var*size)/size;
+}
 
-                if(samplerTexCoord.y < 0.0)
-                samplerTexCoord.y=-samplerTexCoord.y;
-                else if(samplerTexCoord.y > 1.0)
-                samplerTexCoord.y =2.0-samplerTexCoord.y;
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
 
-                vec4 tc= texture2D( iChannel0, samplerTexCoord ); 
-                if(mode==0.0)
-                clraverge+=tc;  
-                else  if(mode==1.0)
-                clraverge+=tc*gr;  
-                count+=1.0;    
-            }       
-            }  
-            if(mode==0.0)
-            clraverge/=count;   
-        } 
-    }  
-    gl_FragColor =clraverge;
+void mainImage( out vec4 fragColor, in vec2 fragCoord )
+{
+    float time = iGlobalTime;
+    vec2 uv = (fragCoord.xy / iResolution.xy);
+    
+    float bluramount = sin(time)*0.01;
+    if (iMouse.w >= 1.) {
+    bluramount = (iMouse.x/iResolution.x)/10.;
+    }
+
+    // float dists = 5.;
+    vec3 blurred_image = vec3(0.);
+    #define repeats 60.
+    for (float i = 0.; i < repeats; i++) { 
+        //Older:
+        // vec2 q = vec2(cos(degrees((grid(i,dists)/repeats)*360.)),sin(degrees((grid(i,dists)/repeats)*360.))) * (1./(1.+mod(i,dists)));
+        vec2 q = vec2(cos(degrees((i/repeats)*360.)),sin(degrees((i/repeats)*360.))) *  (rand(vec2(i,uv.x+uv.y))+bluramount); 
+        vec2 uv2 = uv+(q*bluramount);
+        blurred_image += draw(uv2)/2.;
+        //One more to hide the noise.
+        q = vec2(cos(degrees((i/repeats)*360.)),sin(degrees((i/repeats)*360.))) *  (rand(vec2(i+2.,uv.x+uv.y+24.))+bluramount); 
+        uv2 = uv+(q*bluramount);
+        blurred_image += draw(uv2)/2.;
+    }
+    blurred_image /= repeats;
+    fragColor = vec4(blurred_image,1.0);
+}
+
+void main()
+{
+    mainImage(gl_FragColor, gl_FragCoord.xy);
 }

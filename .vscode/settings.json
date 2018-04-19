@@ -1,6 +1,6 @@
 {
     "shader-toy.textures": {
-        // "0": "file:///D:/cocos/ShaderDemo/assets/resources/startbg.jpg"
-        "0": "file:///E:/cocos/ShaderDemos/assets/resources/startbg.jpg"
+        "0": "file:///D:/cocos/ShaderDemo/assets/resources/startbg.jpg"
+        // "0": "file:///E:/cocos/ShaderDemos/assets/resources/startbg.jpg"
     }
 }
