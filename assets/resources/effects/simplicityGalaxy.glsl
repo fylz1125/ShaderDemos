@@ -57,10 +57,10 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 	
 	float freqs[4];
 	//Sound
-	freqs[0] = texture2D( iChannel1, vec2( 0.01, 0.25 ) ).x;
-	freqs[1] = texture2D( iChannel1, vec2( 0.07, 0.25 ) ).x;
-	freqs[2] = texture2D( iChannel1, vec2( 0.15, 0.25 ) ).x;
-	freqs[3] = texture2D( iChannel1, vec2( 0.30, 0.25 ) ).x;
+	freqs[0] = texture2D( iChannel0, vec2( 0.01, 0.25 ) ).x;
+	freqs[1] = texture2D( iChannel0, vec2( 0.07, 0.25 ) ).x;
+	freqs[2] = texture2D( iChannel0, vec2( 0.15, 0.25 ) ).x;
+	freqs[3] = texture2D( iChannel0, vec2( 0.30, 0.25 ) ).x;
 
 	float t = field(p,freqs[2]);
 	float v = (1. - exp((abs(uv.x) - 1.) * 6.)) * (1. - exp((abs(uv.y) - 1.) * 6.));
