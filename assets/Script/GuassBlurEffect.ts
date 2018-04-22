@@ -1,13 +1,10 @@
 import VertAndFrag from './VertAndFrag';
-import BlursFrag from './BlursFrag';
+import BlursFrag from './GuassBlursFrag';
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class NewClass extends cc.Component {
-
-    @property
-    isDynamic: boolean = false;
-
+    
     @property
     isAllChildrenUse: boolean = false; 
 

@@ -292,7 +292,6 @@
       "__id__": 6
     },
     "_enabled": true,
-    "isDynamic": false,
     "isAllChildrenUse": false,
     "slider": {
       "__id__": 9
@@ -636,7 +635,7 @@
     "target": {
       "__id__": 6
     },
-    "component": "BlurEffect",
+    "component": "GuassBlurEffect",
     "handler": "onSliderBlurAmount",
     "customEventData": ""
   },
