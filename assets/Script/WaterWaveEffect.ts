@@ -7,19 +7,14 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class WaterWaveEffect extends cc.Component {
 
-    @property
-    isAllChildrenUse: boolean = false;
-
     program: cc.GLProgram;
     time: number = 0;
 
     resolution={ x:0.0, y:0.0};
 
     onLoad() {
-        this.enabled = true;
         this.resolution.x = ( this.node.getContentSize().width );
         this.resolution.y = ( this.node.getContentSize().height );
-        cc.log('resolution x: ' + this.resolution.x + ' y: ' + this.resolution.y);
         this.userWater();
         
     }
@@ -51,9 +46,7 @@ export default class WaterWaveEffect extends cc.Component {
             this.program.setUniformLocationWith2f( res, this.resolution.x,this.resolution.y );
             this.program.setUniformLocationWith1f(ba, this.time);
         }
-
         this.setProgram(this.node.getComponent(cc.Sprite)._sgNode, this.program);
-        // this.enabled = true;
     }
 
     setProgram(node: any, program: any) {
@@ -62,13 +55,6 @@ export default class WaterWaveEffect extends cc.Component {
             node.setGLProgramState(glProgram_state);
         } else {
             node.setShaderProgram(program);
-        }
-        var children = node.children;
-        if (!children)
-            return;
-
-        for (var i = 0; i < children.length; i++) {
-            this.setProgram(children[i], program);
         }
     }
 
