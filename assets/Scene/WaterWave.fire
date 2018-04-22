@@ -191,8 +191,7 @@
     "node": {
       "__id__": 3
     },
-    "_enabled": true,
-    "isAllChildrenUse": false
+    "_enabled": true
   },
   {
     "__type__": "cc.Canvas",
