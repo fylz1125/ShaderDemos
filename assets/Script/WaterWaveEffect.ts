@@ -8,6 +8,7 @@ const { ccclass, property } = cc._decorator;
 export default class WaterWaveEffect extends cc.Component {
 
     program: cc.GLProgram;
+    startTime:number = Date.now();
     time: number = 0;
 
     resolution={ x:0.0, y:0.0};
@@ -59,22 +60,16 @@ export default class WaterWaveEffect extends cc.Component {
     }
 
     update(dt) {
-        this.time += 0.01;
+        this.time = (Date.now() - this.startTime) / 1000;
         if (this.program) {
             this.program.use();
             if (cc.sys.isNative) {
                 var glProgram_state = cc.GLProgramState.getOrCreateWithGLProgram(this.program);
                 glProgram_state.setUniformFloat("time", this.time);
             } else {
-                let time = this.program.getUniformLocationForName("time");
-                this.program.setUniformLocationWith1f(time, this.time);
+                let ct = this.program.getUniformLocationForName("time");
+                this.program.setUniformLocationWith1f(ct, this.time);
             }
         }
-    }
-
-    updateParameters() {
-        this.time += 0.2;
-        this.resolution.x = ( this.node.getContentSize().width );
-        this.resolution.y = ( this.node.getContentSize().height );
     }
 }
