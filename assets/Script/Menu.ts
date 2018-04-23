@@ -12,7 +12,7 @@ export default class NewClass extends cc.Component {
     @property(cc.ScrollView)
     readme: cc.ScrollView = null;
 
-    sceneList: string[] = ['GrayEffect','TransferEffect'];
+    sceneList: string[] = ['GrayEffect','TransferEffect','GaussBlurs','WaterWave'];
 
     // 初始化
     onLoad() {
