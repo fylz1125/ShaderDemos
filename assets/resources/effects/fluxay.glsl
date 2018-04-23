@@ -1,27 +1,29 @@
-#ifdef GL_ES
-precision mediump float;
-#endif
-varying vec2 v_texCoord;
-// uniform float sys_time;
+const float lineWidth = 0.05;
+const float factor = 0.8;
+const float speed = 5.2;
+
+float pointToLine( vec2 pos, vec2 lineDir, vec2 linePoint ) {
+ 	lineDir = normalize( lineDir );
+    vec2 pointDir = pos - linePoint;
+    float s1 = dot( lineDir, pointDir );
+    return sqrt( dot( pointDir, pointDir ) - s1 * s1 );
+}
+
+void mainImage( out vec4 fragColor, in vec2 fragCoord )
+{
+    float strength = 0.007;
+	vec2 uv = fragCoord.xy / iResolution.xy;
+    float dis = pointToLine( uv, vec2( .5, 2.5 ), vec2( 0.0, 1.0 - tan(iGlobalTime) * speed ) );
+    float a = max( 1.0 - dis / lineWidth, 0.0 );
+    
+    vec4 color0 = texture2D( iChannel0, uv );
+    vec3 improve = strength * vec3(255, 255, 255);
+    vec3 result = improve * vec3( color0.r, color0.g, color0.b);
+    float alpha = color0.a ;
+	fragColor = color0 + vec4(result,1.)*a;
+}
+
 void main()
 {
-    vec4 src_color = texture2D(iChannel0, gl_FragCoord.xy).rgba;
-
-    float width = 0.2;       //流光的宽度范围 (调整该值改变流光的宽度)
-    float start = iGlobalTime;  //流光的起始x坐标
-    float strength = 0.01;   //流光增亮强度   (调整该值改变流光的增亮强度)
-    float offset = 0.2;      //偏移值         (调整该值改变流光的倾斜程度)
-    //if( start <= v_texCoord.x && v_texCoord.x <= (start + width))
-    vec2 uv = gl_FragCoord.xy/iResolution.xy;
-    if( uv.x < (start - offset * uv.y) &&  uv.x > (start - offset * uv.y - width))
-    {
-
-        float strength = 0.01;
-        vec3 improve = strength * vec3(255, 255, 255);
-        vec3 result = improve * vec3( src_color.r, src_color.g, src_color.b);
-        gl_FragColor = vec4(result, src_color.a);
-
-    }else{
-        gl_FragColor = src_color;
-    }
+    mainImage(gl_FragColor, gl_FragCoord.xy);
 }
