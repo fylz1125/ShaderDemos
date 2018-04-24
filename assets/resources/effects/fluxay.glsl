@@ -1,29 +1,31 @@
-const float lineWidth = 0.05;
-const float factor = 0.8;
-const float speed = 5.2;
+#ifdef GL_ES                                 
+precision lowp float;                          
+#endif                                          
+  
+varying vec4 v_fragmentColor;                  
+varying vec2 v_texCoord;                      
+  
+uniform float factor;  
+uniform float width;  
+uniform float offset;  
+uniform vec3 color; 
+void main()                                      
+{                                              
+     vec4 texColor = texture2D(iChannel0, v_texCoord);  
+ 
+     float distance = abs(v_texCoord[0]+v_texCoord[1]-offset)/1.414;   
 
-float pointToLine( vec2 pos, vec2 lineDir, vec2 linePoint ) {
- 	lineDir = normalize( lineDir );
-    vec2 pointDir = pos - linePoint;
-    float s1 = dot( lineDir, pointDir );
-    return sqrt( dot( pointDir, pointDir ) - s1 * s1 );
-}
+     distance = 1.0-(1.0/width)*distance;  
+     distance = max(distance, 0.0);  
+     vec4 sample = vec4(0.0,0.0,0.0,0.0);  
+     sample[0] = color[0] * distance;  
+     sample[1] = color[1] * distance;  
+     sample[2] = color[2] * distance;  
+     sample[3] = distance;  
 
-void mainImage( out vec4 fragColor, in vec2 fragCoord )
-{
-    float strength = 0.007;
-	vec2 uv = fragCoord.xy / iResolution.xy;
-    float dis = pointToLine( uv, vec2( .5, 2.5 ), vec2( 0.0, 1.0 - tan(iGlobalTime) * speed ) );
-    float a = max( 1.0 - dis / lineWidth, 0.0 );
-    
-    vec4 color0 = texture2D( iChannel0, uv );
-    vec3 improve = strength * vec3(255, 255, 255);
-    vec3 result = improve * vec3( color0.r, color0.g, color0.b);
-    float alpha = color0.a ;
-	fragColor = color0 + vec4(result,1.)*a;
-}
-
-void main()
-{
-    mainImage(gl_FragColor, gl_FragCoord.xy);
-}
+     float alpha = sample[3]*texColor[3];  
+     texColor[0] = texColor[0] + sample[0]*alpha*factor;  
+     texColor[1] = texColor[1] + sample[1]*alpha*factor;  
+     texColor[2] = texColor[2] + sample[2]*alpha*factor;  
+     gl_FragColor = v_fragmentColor * texColor;  
+} 
