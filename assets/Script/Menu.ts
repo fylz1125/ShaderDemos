@@ -12,7 +12,7 @@ export default class NewClass extends cc.Component {
     @property(cc.ScrollView)
     readme: cc.ScrollView = null;
 
-    sceneList: string[] = ['GrayEffect','TransferEffect','GaussBlurs','WaterWave'];
+    sceneList: string[] = ['GrayEffect','TransferEffect','GaussBlurs','WaterWave','FluxayEffect'];
 
     // 初始化
     onLoad() {
@@ -28,7 +28,7 @@ export default class NewClass extends cc.Component {
         let self = this;
         cc.loader.loadRes('readme/' + url, function(err, txt) {
             if (err) {
-                self.instructionLabel.string = '加载说明文件出错';
+                self.instructionLabel.string = '暂无相关文档';
                 cc.log('加载说明文件出错');
                 return;
             }
