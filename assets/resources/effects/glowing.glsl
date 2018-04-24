@@ -7,7 +7,7 @@ float coefficient()
 	float v = mod(iGlobalTime, 3.0);
     if(v > 1.5)
         v = 3.0 - v;
-    return v;
+    return 0.19;
 }
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
