@@ -26,9 +26,9 @@ export default class NewClass extends cc.Component {
     userWater() {
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
-            this.program.initWithString(Fluxay.fluxay_vert, Fluxay.fluxay_frag);
+            this.program.initWithString(Fluxay.fluxay_vert, Fluxay.fluxay_frag_super);
         } else {
-            this.program.initWithVertexShaderByteArray(Fluxay.fluxay_vert, Fluxay.fluxay_frag);
+            this.program.initWithVertexShaderByteArray(Fluxay.fluxay_vert, Fluxay.fluxay_frag_super);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_POSITION, cc.macro.VERTEX_ATTRIB_POSITION);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_COLOR, cc.macro.VERTEX_ATTRIB_COLOR);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_TEX_COORD, cc.macro.VERTEX_ATTRIB_TEX_COORDS);

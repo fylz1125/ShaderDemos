@@ -35,7 +35,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	c = 1.17-pow(c, 1.4);
     vec4 tex = texture2D(iChannel0,uv);
 	vec3 colour = vec3(pow(abs(c), 20.0));
-    colour = clamp(colour + vec3(0.0, 0.0, .0), 0.0, tex.a);
+    colour = clamp(colour + vec3(.0, .0, .0), 0.0, tex.a);
     
 	fragColor = tex + vec4(colour, 1.0);
 }
