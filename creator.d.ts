@@ -3395,6 +3395,10 @@ declare module cc {
 	/** !#en cc.game is the singleton object for game related functions.
 	!#zh cc.game 是 Game 的实例，用来驱动整个游戏。 */
 	export class Game extends EventTarget {		
+		/**
+		 * 游戏中场景信息，路径和uuid
+		 */
+		_sceneInfos;
 		/** !#en Event triggered when game hide to background.
 		Please note that this event is not 100% guaranteed to be fired on Web platform,
 		on native platforms, it corresponds to enter background event, os status bar or notification center may not trigger this event.

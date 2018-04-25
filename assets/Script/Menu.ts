@@ -14,10 +14,19 @@ export default class NewClass extends cc.Component {
 
     sceneList: string[] = ['GrayEffect','TransferEffect','GaussBlurs','WaterWave','FluxayEffect'];
 
+    scenesMap: string[];
     // 初始化
     onLoad() {
+        this.scenesMap = new Array<string>();
         cc.director.setDisplayStats(true);
         cc.game.addPersistRootNode(this.node);
+        let scenes = cc.game._sceneInfos;
+        for (let i = 0; i < scenes.length; ++i){
+            let url = <string>scenes[i].url;
+            let tmp = url.replace('db://assets/Scene/', '').replace('.fire','');
+            this.scenesMap.push(tmp);
+        }
+        cc.log('scenes count: ' + this.scenesMap);
 
         let currentSceneName = this.sceneList[this.currentSceneIndex];
         this.loadInstruction(currentSceneName);
