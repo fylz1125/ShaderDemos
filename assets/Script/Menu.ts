@@ -2,42 +2,41 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class NewClass extends cc.Component {
-
-    @property
-    currentSceneIndex: number = 0;
-
     @property(cc.Label)
     instructionLabel: cc.Label = null;
 
     @property(cc.ScrollView)
     readme: cc.ScrollView = null;
 
-    sceneList: string[] = ['GrayEffect','TransferEffect','GaussBlurs','WaterWave','FluxayEffect'];
+    currentSceneIndex: number = 0;
+    sceneList: string[] = new Array<string>();
 
-    scenesMap: string[];
     // 初始化
     onLoad() {
-        this.scenesMap = new Array<string>();
         cc.director.setDisplayStats(true);
         cc.game.addPersistRootNode(this.node);
-        let scenes = cc.game._sceneInfos;
+
+        // 初始化场景数组
+        let scenes = cc.game._sceneInfos;//隐藏属性，拿过来用
         for (let i = 0; i < scenes.length; ++i){
             let url = <string>scenes[i].url;
             let tmp = url.replace('db://assets/Scene/', '').replace('.fire','');
-            this.scenesMap.push(tmp);
+            if (tmp === 'GrayEffect') {
+                this.sceneList.unshift(tmp);
+            } else {
+                this.sceneList.push(tmp);
+            }
         }
-        cc.log('scenes count: ' + this.scenesMap);
-
+        // 说明文档必须要和场景同名
         let currentSceneName = this.sceneList[this.currentSceneIndex];
         this.loadInstruction(currentSceneName);
-        
     }
 
     loadInstruction(url: string) {
         let self = this;
         cc.loader.loadRes('readme/' + url, function(err, txt) {
             if (err) {
-                self.instructionLabel.string = '暂无相关文档';
+                self.instructionLabel.string = '暂无说明文档，后续补充';
                 cc.log('加载说明文件出错');
                 return;
             }
