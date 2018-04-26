@@ -286,7 +286,7 @@
       "__id__": 6
     },
     "_enabled": true,
-    "fragShader": "lightcircle.glsl"
+    "fragShader": "lightcircle"
   },
   {
     "__type__": "cc.Canvas",
