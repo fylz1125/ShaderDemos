@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": null,
-    "_id": "86d055c9-654e-4242-b412-6570a2d37636",
+    "_id": "f82e02cf-4546-46b2-b806-9c7db79a44e3",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -70,7 +70,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "caU0l87dlD7KStzYVb9vi/",
+    "_id": "8cP0qenDFF76VYT7eqxgTD",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -124,7 +124,7 @@
     "_prefab": {
       "__id__": 5
     },
-    "_id": "b0ATTh3wNEx7xTjZb7GmuG",
+    "_id": "52FKlboVVFm4d2wPsL31er",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -199,7 +199,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "dragon_nest",
+    "_name": "circle",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -216,13 +216,13 @@
       }
     ],
     "_prefab": null,
-    "_id": "49SqNvFKFBf7Crq368Z/ru",
+    "_id": "51BzF9WrxLGp2DVCkZ16r3",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 135,
+      "g": 127,
+      "b": 189,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -233,8 +233,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 500,
-      "height": 180
+      "width": 300,
+      "height": 300
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -261,10 +261,10 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "1f35c46f-8762-41f5-bfc7-e181b8b364c0"
+      "__uuid__": "a23235d1-15db-4b95-8439-a2e005bfff91"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -279,13 +279,14 @@
     "_atlas": null
   },
   {
-    "__type__": "e8aabh4tllDR7kMBCxz7hqp",
+    "__type__": "bd1117F/2dLHJBPHjLTzcUt",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 6
     },
-    "_enabled": true
+    "_enabled": true,
+    "fragShader": "lightcircle.glsl"
   },
   {
     "__type__": "cc.Canvas",
