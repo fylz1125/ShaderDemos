@@ -2,8 +2,9 @@
 precision mediump float;
 #endif
 
-
-float noise(vec3 p) //Thx to Las^Mercury
+varying vec2 v_texCoord;
+uniform float time;
+float noise(vec3 p) 
 {
 	vec3 i = floor(p);
 	vec4 a = dot(i, vec3(1., 57., 21.)) + vec4(0., 57., 21., 78.);
@@ -21,7 +22,7 @@ float sphere(vec3 p, vec4 spr)
 float flame(vec3 p)
 {
 	float d = sphere(p*vec3(1.,.5,1.), vec4(.0,-1.,.0,1.));
-	return d + (noise(p+vec3(.0,iGlobalTime*2.,.0)) + noise(p*3.)*.5)*.25*(p.y) ;
+	return d + (noise(p+vec3(.0,time*2.,.0)) + noise(p*3.)*.5)*.25*(p.y) ;
 }
 
 float scene(vec3 p)
@@ -52,11 +53,14 @@ vec4 raymarch(vec3 org, vec3 dir)
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
-	vec2 v = -1.0 + 2.0 * fragCoord.xy / iResolution.xy;
-	v.x *= iResolution.x/iResolution.y;
+	vec2 uv= v_texCoord.xy;
+	// vec2 v = -1.0 + 2.0 * fragCoord.xy / iResolution.xy;
+	// 移植需要换成文理坐标
+	vec2 v = -1.0 + 2.0 * uv;
+	// v.x *= v_texCoord.x/v_texCoord.y;
 	
 	vec3 org = vec3(0., -2., 4.);
-	vec3 dir = normalize(vec3(v.x*1.6, -v.y, -1.5));
+	vec3 dir = normalize(vec3(v.x*1.6, v.y, -1.5));
 	
 	vec4 p = raymarch(org, dir);
 	float glow = p.w;

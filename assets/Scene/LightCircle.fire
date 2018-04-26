@@ -220,9 +220,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 135,
-      "g": 127,
-      "b": 189,
+      "r": 66,
+      "g": 62,
+      "b": 87,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
