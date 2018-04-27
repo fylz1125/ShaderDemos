@@ -2,7 +2,7 @@
 
 ## 这个项目主要用来介绍Shader在cocos creator引擎中的使用方法
 
-## Shader使用主要包含两部分
+## Shader编写应用主要包含两个部分
 
 - 片元shader的编写，就是一段GLSL代码，类似C代码，main函数入口
 - shader加载器，就是一段creator代码，将shader加载进creator，使组件产生各种各样的效果
