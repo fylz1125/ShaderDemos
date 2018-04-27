@@ -28,9 +28,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 47,
-      "g": 65,
-      "b": 73,
+      "r": 59,
+      "g": 75,
+      "b": 138,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -92,7 +92,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "79be2183-0188-4d2c-b1ce-5a5c7e7146f4"
     },
     "fileId": "56c9nhvohB44t5DGi8oTdR",
     "sync": false
