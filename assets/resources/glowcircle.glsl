@@ -1,3 +1,7 @@
+#ifdef GL_ES
+precision mediump float;
+#endif
+
 #define M_PI 3.1415926535897932384626433832795
 #define M_TWO_PI (2.0 * M_PI)
 
