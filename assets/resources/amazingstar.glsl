@@ -2,7 +2,9 @@
 precision mediump float;
 #endif
 
-
+uniform float time;
+uniform vec2 resolution;
+varying vec2 v_texCoord;
 //.h
 vec3 sim(vec3 p,float s);
 vec2 rot(vec2 p,float r);
@@ -72,21 +74,21 @@ void main() {
 
 	vec2 posScale = vec2(2.0);
 	
-	vec2 aspect = vec2(1.,iResolution.y/iResolution.x);
-	vec2 uv = 0.5 + (gl_FragCoord.xy * vec2(1./iResolution.x,1./iResolution.y) - 0.5)*aspect;
-	float mouseW = atan((iMouse.y - 0.5)*aspect.y, (iMouse.x - 0.5)*aspect.x);
+	vec2 aspect = vec2(1.,resolution.y/resolution.x);
+	vec2 uv = 0.5 + (gl_FragCoord.xy * vec2(1./resolution.x,1./resolution.y) - 0.5)*aspect;
+	float mouseW = atan((.5 - 0.5)*aspect.y, (.5 - 0.5)*aspect.x);
 	vec2 mousePolar = vec2(sin(mouseW), cos(mouseW));
 	vec2 offset = (0.5 - 0.5)*2.*aspect;
-	offset =  - complex_mul(offset, mousePolar) +iGlobalTime*0.;
+	offset =  - complex_mul(offset, mousePolar);
 	vec2 uv_distorted = uv;
 	
-	float filter = smoothcircle( uv_distorted, 0.12, 100.);
-	uv_distorted = complex_mul(((uv_distorted - 0.5)*mix(2., 6., filter)), mousePolar) + offset;
+	float fil = smoothcircle( uv_distorted, 0.12, 100.);
+	uv_distorted = complex_mul(((uv_distorted - 0.5)*mix(2., 6., fil)), mousePolar) + offset;
 
 
-   vec2 p=(gl_FragCoord.xy/iResolution.x)*2.0-vec2(1.0,iResolution.y/iResolution.x);
-	p = uv_distorted;
-p.y=-p.y;
+   vec2 p=(gl_FragCoord.xy/resolution.x)*2.0-vec2(1.0,resolution.y/resolution.x);
+   p = uv_distorted;
+   p.y=-p.y;
    p=p*2.0;
   
    p=makeSymmetry(p);
@@ -94,7 +96,7 @@ p.y=-p.y;
    float x=p.x;
    float y=p.y;
    
-   float t=iGlobalTime*0.1618;
+   float t=time*0.1618;
 
    float a=
        makePoint(x,y,3.3,2.9,0.3,0.3,t);

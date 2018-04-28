@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": null,
-    "_id": "f82e02cf-4546-46b2-b806-9c7db79a44e3",
+    "_id": "fb125b23-5653-4a07-a351-1eb26ea1c492",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -70,7 +70,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "8cP0qenDFF76VYT7eqxgTD",
+    "_id": "59FbREfUBGRrB4wDxlQXf/",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -124,7 +124,7 @@
     "_prefab": {
       "__id__": 5
     },
-    "_id": "52FKlboVVFm4d2wPsL31er",
+    "_id": "81SRIKCSxCKpnwoQ2JIUrv",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -199,7 +199,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "circle",
+    "_name": "ColorShapes",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -216,7 +216,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "51BzF9WrxLGp2DVCkZ16r3",
+    "_id": "46LKeAL0dP2oMdr31yVlmM",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -233,8 +233,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 300,
-      "height": 300
+      "width": 600,
+      "height": 600
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -286,7 +286,7 @@
       "__id__": 6
     },
     "_enabled": true,
-    "fragShader": "lightcircle"
+    "fragShader": "amazingstar"
   },
   {
     "__type__": "cc.Canvas",

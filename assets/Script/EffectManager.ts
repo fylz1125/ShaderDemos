@@ -5,7 +5,7 @@ const { ccclass, property } = cc._decorator;
 export default class EffectManager extends cc.Component {
 
     @property
-    fragShader: string = 'lightcircle.glsl';
+    fragShader: string = 'lightcircle';
     
     program: cc.GLProgram;
     frag_glsl: string = '';
