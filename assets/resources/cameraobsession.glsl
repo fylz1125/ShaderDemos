@@ -1,6 +1,10 @@
 #define NumberOfParticles 64
 #define Pi 3.141592
 
+uniform float time;
+uniform vec2 resolution;
+varying vec2 v_texCoord;
+
 vec3 palette(float x)
 {
 	return vec3(
@@ -29,9 +33,12 @@ float star(vec2 relpos,float confradius,float filmsize)
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
-	vec2 screenpos=(2.0*fragCoord.xy-iResolution.xy)/max(iResolution.x,iResolution.y);
+	vec2 rs = resolution.xy;
+  	vec2 uv= v_texCoord.xy;
 
-	float focaldistance=0.5+sin(iGlobalTime*0.05)*0.013;
+	vec2 screenpos=(2.0*uv*rs-rs)/max(resolution.x,resolution.y);
+
+	float focaldistance=0.5+sin(time*0.05)*0.013;
 	float focallength=0.100;
 	float filmsize=0.036;
 	float minconf=filmsize/1000.0;
@@ -43,11 +50,11 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	for(int i=0;i<NumberOfParticles;i++)
 	{
 		float t=float(i)/float(NumberOfParticles);
-		float a=t*2.0*Pi+iGlobalTime*0.1;
+		float a=t*2.0*Pi+time*0.1;
 
 		vec3 pos=vec3(sin(a)+2.0*sin(2.0*a),cos(a)-2.0*cos(2.0*a),-sin(3.0*a))*0.01;
 
-		float a1=0.1*iGlobalTime;
+		float a1=0.1*time;
 		pos.xz*=mat2(cos(a1),-sin(a1),sin(a1),cos(a1));
 		//float a2=0.1;
 		//pos.yz*=mat2(cos(a2),-sin(a2),sin(a2),cos(a2));
