@@ -1,15 +1,25 @@
 // Created by inigo quilez - iq/2013
 // License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+#ifdef GL_ES
+precision mediump float;
+#endif
 
+uniform vec2 resolution;
+uniform float time;
+varying vec2 v_texCoord;
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
-	vec2 p = (2.0*fragCoord-iResolution.xy)/min(iResolution.y,iResolution.x);
+	// vec2 p = (2.0*fragCoord-resolution.xy)/min(resolution.y,resolution.x);
+    // 修改为creator坐标
+    vec2 uv = v_texCoord.xy;
+    vec2 rs = resolution.xy;
+	vec2 p = (2.0*uv*rs - rs)/min(resolution.y,resolution.x);
 
     float a = atan(p.x,p.y);
-    float r = length(p)*(0.8+0.2*sin(0.3*iGlobalTime));
+    float r = length(p)*(0.8+0.2*sin(0.3*time));
 
-    float w = cos(2.0*iGlobalTime-r*2.0);
-    float h = 0.5+0.5*cos(12.0*a-w*7.0+r*8.0+ 0.7*iGlobalTime);
+    float w = cos(2.0*time-r*2.0);
+    float h = 0.5+0.5*cos(12.0*a-w*7.0+r*8.0+ 0.7*time);
     float d = 0.25+0.75*pow(h,1.0*r)*(0.7+0.3*w);
 
     float f = sqrt(1.0-r/d)*r*2.5;
