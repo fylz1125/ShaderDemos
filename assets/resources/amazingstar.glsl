@@ -72,10 +72,13 @@ float smoothcircle(vec2 uv, float radius, float sharpness){
 
 void main() {
 
+    vec2 rs = resolution.xy;
+    vec2 cuv= v_texCoord.xy;
 	vec2 posScale = vec2(2.0);
-	
+    // 宽高比
 	vec2 aspect = vec2(1.,resolution.y/resolution.x);
-	vec2 uv = 0.5 + (gl_FragCoord.xy * vec2(1./resolution.x,1./resolution.y) - 0.5)*aspect;
+    // 从屏幕坐标映射到canvas坐标
+	vec2 uv = 0.5 + (cuv*rs * vec2(1./resolution.x,1./resolution.y) - 0.5)*aspect;
 	float mouseW = atan((.5 - 0.5)*aspect.y, (.5 - 0.5)*aspect.x);
 	vec2 mousePolar = vec2(sin(mouseW), cos(mouseW));
 	vec2 offset = (0.5 - 0.5)*2.*aspect;
