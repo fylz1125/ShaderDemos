@@ -235,7 +235,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 400,
+      "width": 600,
       "height": 400
     },
     "_rotationX": 0,

@@ -1,6 +1,9 @@
 #define M_PI 3.1415926535897932384626433832795
 #define M_TWO_PI (2.0 * M_PI)
 
+uniform float time;
+uniform vec2 resolution;
+varying vec2 v_texCoord;
 float rand(vec2 n) {
     return fract(sin(dot(n, vec2(12.9898,12.1414))) * 83758.5453);
 }
@@ -42,7 +45,7 @@ float shade(vec2 uv, float t) {
 
 vec3 color(float grad) {
     
-    float m2 = iMouse.z < 0.0001 ? 1.15 : iMouse.y * 3.0 / iResolution.y;
+    float m2 = .15;//iMouse.z < 0.0001 ? 1.15 : iMouse.y * 3.0 / resolution.y;
     grad =sqrt( grad);
     vec3 color = vec3(1.0 / (pow(vec3(0.5, 0.0, .1) + 2.61, vec3(2.0))));
     vec3 color2 = color;
@@ -55,12 +58,12 @@ vec3 color(float grad) {
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 	
-    float m1 = iMouse.z < 0.0001 ? 3.6 : iMouse.x * 5.0 / iResolution.x;
+    float m1 = 2.6;//iMouse.z < 0.0001 ? 3.6 : iMouse.x * 5.0 / resolution.x;
     
-    float t = iGlobalTime;
-    vec2 uv = fragCoord / iResolution.yy;
+    float t = time;
+    vec2 uv = v_texCoord*resolution / resolution.yy;
     float ff = 1.0 - uv.y;
-    uv.x -= (iResolution.x / iResolution.y - 1.0) / 2.0;
+    uv.x -= (resolution.x / resolution.y - 1.0) / 2.0;
     vec2 uv2 = uv;
     uv2.y = 1.0 - uv2.y;
    	uv = polarMap(uv, 1.3, m1);
