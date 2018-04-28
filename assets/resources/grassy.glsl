@@ -58,6 +58,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	
 	mat3 rm = mat3(cu, cv, cw);
 	
+	//文理y坐标反转
 	vec2 uv = -v_texCoord.xy * 2.0 + vec2(1.0);
 	vec2 t = uv;
 	t.x *= resolution.x / resolution.y;
