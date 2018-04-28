@@ -1,4 +1,11 @@
-#define BLADES 200
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+#define BLADES 110
+uniform float time;
+uniform vec2 resolution;
+varying vec2 v_texCoord;
 
 vec3 rotateX(float a, vec3 v)
 {
@@ -18,7 +25,7 @@ vec3 rotateZ(float a, vec3 v)
 vec4 grass(vec2 p, float x)
 {
 	float s = mix(0.7, 2.0, 0.5 + sin(x * 12.0) * 0.5);
-	p.x += pow(1.0 + p.y, 2.0) * 0.1 * cos(x * 0.5 + iGlobalTime);
+	p.x += pow(1.0 + p.y, 2.0) * 0.1 * cos(x * 0.5 + time);
 	p.x *= s;
 	p.y = (1.0 + p.y) * s - 1.0;
 	float m = 1.0 - smoothstep(0.0, clamp(1.0 - p.y * 1.5, 0.01, 0.6) * 0.2 * s, pow(abs(p.x) * 19.0, 1.5) + p.y - 0.6);
@@ -38,25 +45,25 @@ vec3 backg(vec3 ro, vec3 rd)
 // some simple noise just to break up the hideous banding
 float dither()
 {
-	return fract(gl_FragCoord.x * 0.482635532 + gl_FragCoord.y * 0.1353412 + iGlobalTime * 100.0) * 0.008;
+	return fract(gl_FragCoord.x * 0.482635532 + gl_FragCoord.y * 0.1353412 + time * 100.0) * 0.008;
 }
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
 	vec3 ct = vec3(0.0, 1.0, 5.0);
-	vec3 cp = rotateY(cos(iGlobalTime * 0.2) * 0.4, vec3(0.0, 0.6, 0.0));
+	vec3 cp = rotateY(cos(time * 0.2) * 0.4, vec3(0.0, 0.6, 0.0));
 	vec3 cw = normalize(cp - ct);
 	vec3 cu = normalize(cross(cw, vec3(0.0, 1.0, 0.0)));
 	vec3 cv = normalize(cross(cu, cw));
 	
 	mat3 rm = mat3(cu, cv, cw);
 	
-	vec2 uv = (fragCoord.xy / iResolution.xy) * 2.0 - vec2(1.0);
+	vec2 uv = -v_texCoord.xy * 2.0 + vec2(1.0);
 	vec2 t = uv;
-	t.x *= iResolution.x / iResolution.y;
+	t.x *= resolution.x / resolution.y;
 	
-	vec3 ro = cp, rd = rotateY(sin(iGlobalTime * 0.7) * 0.1,
-							   rm * rotateZ(sin(iGlobalTime * 0.15) * 0.1, vec3(t, -1.3)));
+	vec3 ro = cp, rd = rotateY(sin(time * 0.7) * 0.1,
+							   rm * rotateZ(sin(time * 0.15) * 0.1, vec3(t, -1.3)));
 	
 	vec3 fcol = backg(ro, rd);
 	
@@ -82,7 +89,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	
 	
 	// iÃ±igo quilez's great vigneting effect!
-	vec2 q = (uv + vec2(1.0)) * 0.5;
+	vec2 q = (uv + vec2(1.)) * 0.5;
 	fcol *= 0.2 + 0.8*pow( 16.0*q.x*q.y*(1.0-q.x)*(1.0-q.y), 0.1 );
 	
 	
