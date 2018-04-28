@@ -1,3 +1,11 @@
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform float time;
+uniform vec2 resolution;
+varying vec2 v_texCoord;
+
 mat2 rotate2d(float angle){
     return mat2(cos(angle),-sin(angle),
                 sin(angle),cos(angle));
@@ -5,7 +13,7 @@ mat2 rotate2d(float angle){
 
 float variation(vec2 v1, vec2 v2, float strength, float speed) {
 	return sin(
-        dot(normalize(v1), normalize(v2)) * strength + iGlobalTime * speed
+        dot(normalize(v1), normalize(v2)) * strength + time * speed
     ) / 100.0;
 }
 
@@ -24,7 +32,9 @@ vec3 paintCircle (vec2 uv, vec2 center, float rad, float width) {
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
-	vec2 uv = fragCoord.xy / iResolution.xy;
+    // 移植需要转换坐标 v_texCoord.xy
+	// vec2 uv = fragCoord.xy / iResolution.xy;
+	vec2 uv = v_texCoord.xy;
     uv.x *= 1.5;
     uv.x -= 0.25;
     
@@ -37,7 +47,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     color = paintCircle(uv, center, radius, 0.1);
     
     //color with gradient
-    vec2 v = rotate2d(iGlobalTime) * uv;
+    vec2 v = rotate2d(time) * uv;
     color *= vec3(v.x, v.y, 0.7-v.y*v.x);
     
     //paint white circle
