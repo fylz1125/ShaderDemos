@@ -278,7 +278,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 210
+      "y": 160
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -523,7 +523,7 @@
     "_alignFlags": 17,
     "_left": 0,
     "_right": 0,
-    "_top": 100,
+    "_top": 150,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -569,7 +569,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "New Label",
+    "_name": "amount",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -613,7 +613,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 250
+      "y": 200
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -635,7 +635,7 @@
     "_alignFlags": 17,
     "_left": 0,
     "_right": 0,
-    "_top": 50,
+    "_top": 100,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,

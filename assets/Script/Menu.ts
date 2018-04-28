@@ -8,6 +8,9 @@ export default class NewClass extends cc.Component {
     @property(cc.ScrollView)
     readme: cc.ScrollView = null;
 
+    @property(cc.Label)
+    sceneName: cc.Label = null;
+
     currentSceneIndex: number = 0;
     sceneList: string[] = new Array<string>();
 
@@ -38,6 +41,7 @@ export default class NewClass extends cc.Component {
         // 说明文档必须要和场景同名
         let currentSceneName = this.sceneList[this.currentSceneIndex];
         this.loadInstruction(currentSceneName);
+        this.setSceneName(currentSceneName);
     }
 
     loadInstruction(url: string) {
@@ -66,6 +70,7 @@ export default class NewClass extends cc.Component {
             return;
         }
         let scene = this.sceneList[this.currentSceneIndex];
+        this.setSceneName(scene);
         cc.director.loadScene(scene,this.onLoadSceneFinish.bind(this));
     }
 
@@ -81,7 +86,12 @@ export default class NewClass extends cc.Component {
             return;
         }
         let scene = this.sceneList[this.currentSceneIndex];
+        this.setSceneName(scene);
         cc.director.loadScene(scene,this.onLoadSceneFinish.bind(this));
+    }
+    
+    setSceneName(name:string) {
+        this.sceneName.string = name;
     }
 
 

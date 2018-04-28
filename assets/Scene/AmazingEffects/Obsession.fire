@@ -66,7 +66,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 9
+        "__id__": 10
       }
     ],
     "_prefab": null,
@@ -210,10 +210,13 @@
     "_components": [
       {
         "__id__": 7
+      },
+      {
+        "__id__": 8
       }
     ],
     "_prefab": {
-      "__id__": 8
+      "__id__": 9
     },
     "_id": "9ftJJWW2tH36WbyYAJFkrS",
     "_opacity": 255,
@@ -276,6 +279,16 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_atlas": null
+  },
+  {
+    "__type__": "bd1117F/2dLHJBPHjLTzcUt",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 6
+    },
+    "_enabled": true,
+    "fragShader": "cameraobsession"
   },
   {
     "__type__": "cc.PrefabInfo",
