@@ -1,3 +1,4 @@
+// 混合流光
 #ifdef GL_ES                                 
 precision lowp float;                          
 #endif                                          
@@ -11,7 +12,7 @@ uniform float offset;
 uniform vec3 color; 
 void main()                                      
 {                                              
-     vec4 texColor = texture2D(iChannel0, v_texCoord);  
+     vec4 texColor = texture2D(iChannel3, v_texCoord);  
  
      float distance = abs(v_texCoord[0]+v_texCoord[1]-offset)/1.414;   
 

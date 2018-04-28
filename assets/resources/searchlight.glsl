@@ -8,7 +8,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     // Time varying pixel color
     // vec3 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
 
-    vec4 tex = texture2D(iChannel0, uv);
+    vec4 tex = texture2D(iChannel3, uv);
     
     vec3 light_pos = vec3(2.0 * iMouse.x / iResolution.x - 1.0,
                           2.0 * iMouse.y / iResolution.y - 1.0,
@@ -16,7 +16,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     
     float dist = distance(uv.xy, light_pos.xy);
  
-    vec2 d = fragCoord - iMouse.xy;
+    vec2 d = fragCoord - vec2(500.);
     vec2 s = .15 * iResolution.xy;
     float r = dot(d, d)/dot(s,s);
     

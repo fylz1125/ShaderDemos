@@ -15,6 +15,8 @@ export default class FluxayFrag{
         v_texCoord = a_texCoord;
     }
     `;
+
+    // 流光特效
     static fluxay_frag = `
     #ifdef GL_ES
     precision mediump float;
