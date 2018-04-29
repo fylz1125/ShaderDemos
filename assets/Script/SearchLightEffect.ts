@@ -27,14 +27,14 @@ export default class SearchLightEffect extends cc.Component {
             let touchPos = self.node.convertTouchToNodeSpaceAR(event.touch);
             self.mouse.x = touchPos.x;
             self.mouse.y = touchPos.y;
-            self.useShader();
+            self.changeLight();
         }, this);
 
         this.node.on(cc.Node.EventType.TOUCH_MOVE, function (event:cc.Event.EventTouch) {
             let touchPos = self.node.convertTouchToNodeSpaceAR(event.touch);
             self.mouse.x = touchPos.x;
             self.mouse.y = touchPos.y;
-            self.useShader();
+            self.changeLight();
         }, this);
         this.node.on(cc.Node.EventType.TOUCH_END, function (event) {
             // cc.log('touch end');

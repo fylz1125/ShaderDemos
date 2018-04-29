@@ -22,11 +22,11 @@ export default class SearchLightFrag{
 
     void mainImage( out vec4 fragColor, in vec2 fragCoord )
     {
-        mouse.y= resolution.y - mouse.y;
+        vec2 imouse = vec2(mouse.x, resolution.y - mouse.y);
 
         vec2 uv = v_texCoord.xy ;
         vec4 tex = texture2D(CC_Texture0, uv);
-        vec2 d = uv*resolution.xy -mouse.xy ;
+        vec2 d = uv*resolution.xy -imouse.xy ;
         vec2 s = 0.15 * resolution.xy;
         float r = dot(d, d)/dot(s,s);
         fragColor =  tex * (1.08 - r);   
