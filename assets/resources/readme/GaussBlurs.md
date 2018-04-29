@@ -4,7 +4,7 @@
 `用高斯模糊算法使图片产生模糊效果`
 
 ---
-![光波特效](../../../screenshots/gauss.gif)
+![高斯模糊](../../../screenshots/gauss.gif)
 
 ---
 
