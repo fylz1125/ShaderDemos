@@ -22,6 +22,10 @@
 
     Scene/AmazingEffects/目录下能看到十几个酷炫的shader场景，用于参考学习
 
+
+更多介绍见另一篇文档[说明文档](assets/resources/readme/StartScene.md)
+
+
 ---
 
 ### shader效果器 包含使用说明文档
