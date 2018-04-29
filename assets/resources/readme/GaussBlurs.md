@@ -15,4 +15,4 @@
 
 - 拖到想要施加效果的节点上，去掉slider控件和相关代码
 
-- 如果想要对节点及其子节点施加效果，勾选isAllChildrenUse即可
+- 如果想要对节点及其子节点施加效果，勾选 `isAllChildrenUse` 即可
