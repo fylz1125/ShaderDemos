@@ -26,7 +26,7 @@
 
 ### shader效果器
 
-1. [光波特效](assets/resources/readme/FluxayEffect.md)：使图片产品波光流动效果，类似闪光特效
+1. [流动闪光特效](assets/resources/readme/FluxayEffect.md)：使图片产生流光效果和闪光特效，两种模式
 
 2. [高斯模糊](assets/resources/readme/GaussBlurs.md)：用高斯模糊算法使图片产生模糊效果
 

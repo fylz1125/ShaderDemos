@@ -8,15 +8,20 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class NewClass extends cc.Component {
-
-
+    @property
+    mode: number = 0;    
+    fragStr: string = null;
     program: cc.GLProgram;
     startTime:number = Date.now();
     time: number = 0;
 
 
     onLoad() {
-        // this.enabled = false;
+        if (this.mode == 0) {
+            this.fragStr = Fluxay.fluxay_frag;
+        } else {
+            this.fragStr = Fluxay.fluxay_frag_super;
+        }
         this.userWater();
     }
 
@@ -26,9 +31,9 @@ export default class NewClass extends cc.Component {
     userWater() {
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
-            this.program.initWithString(Fluxay.fluxay_vert, Fluxay.fluxay_frag_super);
+            this.program.initWithString(Fluxay.fluxay_vert, this.fragStr);
         } else {
-            this.program.initWithVertexShaderByteArray(Fluxay.fluxay_vert, Fluxay.fluxay_frag_super);
+            this.program.initWithVertexShaderByteArray(Fluxay.fluxay_vert, this.fragStr);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_POSITION, cc.macro.VERTEX_ATTRIB_POSITION);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_COLOR, cc.macro.VERTEX_ATTRIB_COLOR);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_TEX_COORD, cc.macro.VERTEX_ATTRIB_TEX_COORDS);
