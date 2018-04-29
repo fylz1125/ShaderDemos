@@ -16,7 +16,7 @@
 
 ### 使用说明
 
-    效果器shader包含两个文件，例如高斯模糊效果包含GaussBlurEffect.ts和GaussBlurFrag.ts
+    效果器shader包含两个文件，例如高斯模糊效果包含GaussBlurEffect.ts和GaussBlursFrag.ts
 
     将对应的TS脚本拖到要施加效果的节点上即可以，方便快捷，自动施法，开箱即用 
 
@@ -24,7 +24,7 @@
 
 ---
 
-### shader效果器
+### shader效果器 包含使用说明文档
 
 1. [流动闪光特效](assets/resources/readme/FluxayEffect.md)：使图片产生流光效果和闪光特效，两种模式
 
