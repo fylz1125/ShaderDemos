@@ -1,10 +1,22 @@
 # Shader effects for cocos creator
 
-### 九尾狐游戏工作室出品并提供长期维护
+### 九尾狐游戏工作室出品
+### Q群：704391772  
+![Q群704391772](screenshots/qqgroup.JPG)
+---
+
+### 开发工具
+
+- cocos creator v1.8.2
+
+- vscode v1.22.2
+
+- 脚本：Typescript
+
 
 **使用说明**
 
-    效果器shader包含两个文件，例如高斯模糊效果不包含GuassBlurEffect.ts和GuassBlurFrag.ts
+    效果器shader包含两个文件，例如高斯模糊效果包含GuassBlurEffect.ts和GuassBlurFrag.ts
 
     将对应的TS脚本拖到要施加效果的节点上即可以，方便快捷，自动施法，开箱即用 
 
