@@ -1,10 +1,10 @@
 # 九尾狐游戏出品
 
-### 本项目大部分的shader来源于shadertoy.com
+### 本项目大部分的shader来源于[https://www.shadertoy.com/](https://www.shadertoy.com)
 
 ### 欢迎各位大神提交代码，希望能开发更多更好的效果器
 
-### 项目地址 https://github.com/fylz1125/ShaderDemos
+### 本项目地址 https://github.com/fylz1125/ShaderDemos
 
 ### shader简介
 
