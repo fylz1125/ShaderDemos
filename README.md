@@ -1,9 +1,10 @@
 # Shader effects for cocos creator
 
 ### 九尾狐游戏工作室出品
-### Q群：704391772  
+
+> Q群：704391772  
 ![Q群704391772](screenshots/qqgroup.JPG)
----
+
 
 ### 开发工具
 
@@ -13,6 +14,7 @@
 
 - 脚本：Typescript
 
+---
 
 **使用说明**
 
