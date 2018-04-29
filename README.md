@@ -36,7 +36,7 @@
 
 5. [动态水波](assets/resources/readme/WaterWave.md)：使一张图片产生动态水波效果
 
-6. [战争迷雾探照灯](assets/resources/readme/SearchLight.md) 使一张图片产生战争迷雾效果，跟随触摸点照亮原型区域
+6. [战争迷雾探照灯](assets/resources/readme/SearchLight.md) 使一张图片产生战争迷雾效果，跟随触摸点照亮圆形区域
 
 ---
 

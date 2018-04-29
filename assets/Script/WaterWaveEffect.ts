@@ -1,7 +1,7 @@
 // Feofox Game
 // Author:Lerry
 // https://github.com/fylz1125/ShaderDemos
-import WaterFrag from './WaterWaveFrag';
+import WaterWave from './WaterWaveFrag';
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -26,9 +26,9 @@ export default class WaterWaveEffect extends cc.Component {
     userWater() {
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
-            this.program.initWithString(WaterFrag.waterwave_vert, WaterFrag.waterwave_frag);
+            this.program.initWithString(WaterWave.waterwave_vert, WaterWave.waterwave_frag);
         } else {
-            this.program.initWithVertexShaderByteArray(WaterFrag.waterwave_vert, WaterFrag.waterwave_frag);
+            this.program.initWithVertexShaderByteArray(WaterWave.waterwave_vert, WaterWave.waterwave_frag);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_POSITION, cc.macro.VERTEX_ATTRIB_POSITION);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_COLOR, cc.macro.VERTEX_ATTRIB_COLOR);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_TEX_COORD, cc.macro.VERTEX_ATTRIB_TEX_COORDS);

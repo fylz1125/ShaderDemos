@@ -2,12 +2,11 @@
 // Author:Lerry
 // https://github.com/fylz1125/ShaderDemos
 import Fluxay from './FluxayFrag';
-import FluxayFrag from './FluxayFrag';
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class FluxayEffect extends cc.Component {
     @property
     mode: number = 0;    
     fragStr: string = null;

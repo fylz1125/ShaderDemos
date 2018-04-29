@@ -10,7 +10,7 @@
 ---
 
 ### 使用说明
-- 直接拖到需要施加效果的节点上，不需要加任何代码
+- 将`GrayEffect.ts`和`GrayFrag.ts`放到自己的项目  <br>将`GrayEffect.ts`拖到想要施加效果的节点上 
 
 - 默认对当前节点施加效果，如果想要节点及其子节点都施加效果，请勾选 `isAllChildrenUse`
 

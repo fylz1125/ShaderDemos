@@ -1,4 +1,4 @@
-export default class VertAndFrag{
+export default class GrayFrag{
     static default_vert = `
     attribute vec4 a_position;
     attribute vec2 a_texCoord;

@@ -1,9 +1,8 @@
-import VertAndFrag from './VertAndFrag';
 import BlursFrag from './GaussBlursFrag';
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class GaussBlurEffect extends cc.Component {
     
     @property
     isAllChildrenUse: boolean = false; 
@@ -31,9 +30,9 @@ export default class NewClass extends cc.Component {
     userBlur() {
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
-            this.program.initWithString(VertAndFrag.default_vert, BlursFrag.blursFrag);
+            this.program.initWithString(BlursFrag.blurs_vert, BlursFrag.blurs_frag);
         } else {
-            this.program.initWithVertexShaderByteArray(VertAndFrag.default_vert, BlursFrag.blursFrag);
+            this.program.initWithVertexShaderByteArray(BlursFrag.blurs_vert, BlursFrag.blurs_frag);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_POSITION, cc.macro.VERTEX_ATTRIB_POSITION);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_COLOR, cc.macro.VERTEX_ATTRIB_COLOR);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_TEX_COORD, cc.macro.VERTEX_ATTRIB_TEX_COORDS);

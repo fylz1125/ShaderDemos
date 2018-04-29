@@ -1,4 +1,3 @@
-import Vert from './VertAndFrag';
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -7,6 +6,20 @@ export default class EffectManager extends cc.Component {
     @property
     fragShader: string = 'lightcircle';
     
+    default_vert = `
+    attribute vec4 a_position;
+    attribute vec2 a_texCoord;
+    attribute vec4 a_color;
+    varying vec2 v_texCoord;
+    varying vec4 v_fragmentColor;
+    void main()
+    {
+        gl_Position = CC_PMatrix * a_position;
+        v_fragmentColor = a_color;
+        v_texCoord = a_texCoord;
+    }
+    `;
+
     program: cc.GLProgram;
     frag_glsl: string = '';
     startTime:number = Date.now();
@@ -31,9 +44,9 @@ export default class EffectManager extends cc.Component {
     useShader() {
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
-            this.program.initWithString(Vert.default_vert, this.frag_glsl);
+            this.program.initWithString(this.default_vert, this.frag_glsl);
         } else {
-            this.program.initWithVertexShaderByteArray(Vert.default_vert, this.frag_glsl);
+            this.program.initWithVertexShaderByteArray(this.default_vert, this.frag_glsl);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_POSITION, cc.macro.VERTEX_ATTRIB_POSITION);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_COLOR, cc.macro.VERTEX_ATTRIB_COLOR);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_TEX_COORD, cc.macro.VERTEX_ATTRIB_TEX_COORDS);

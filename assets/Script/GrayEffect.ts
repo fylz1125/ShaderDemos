@@ -1,8 +1,8 @@
-import VertAndFrag from './VertAndFrag';
+import Gray from './GrayFrag';
 const { ccclass, property } = cc._decorator
 
 @ccclass
-export default class Helloworld extends cc.Component {
+export default class GrayEffect extends cc.Component {
     @property
     isAllChildrenUse: boolean = false;
 
@@ -16,11 +16,11 @@ export default class Helloworld extends cc.Component {
     grayShader() {
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
-            this.program.initWithString(VertAndFrag.default_vert, VertAndFrag.gray_frag);
+            this.program.initWithString(Gray.default_vert, Gray.gray_frag);
             this.program.link();
             this.program.updateUniforms();
         } else {
-            this.program.initWithVertexShaderByteArray(VertAndFrag.default_vert, VertAndFrag.gray_frag);
+            this.program.initWithVertexShaderByteArray(Gray.default_vert, Gray.gray_frag);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_POSITION, cc.macro.VERTEX_ATTRIB_POSITION);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_COLOR, cc.macro.VERTEX_ATTRIB_COLOR);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_TEX_COORD, cc.macro.VERTEX_ATTRIB_TEX_COORDS);

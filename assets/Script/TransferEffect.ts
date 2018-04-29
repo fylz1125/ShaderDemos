@@ -1,9 +1,8 @@
-import VF from './VertAndFrag';
 import Transfer from './TransferFrag';
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class Helloworld extends cc.Component {
+export default class TransferEffect extends cc.Component {
 
     @property(cc.Node)
     bg: cc.Node = null;

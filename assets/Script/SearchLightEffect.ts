@@ -1,12 +1,12 @@
 // Feofox Game
 // Author:Lerry
 // https://github.com/fylz1125/ShaderDemos
-import SearchLightFrag from './SearchLightFrag';
+import SearchLight from './SearchLightFrag';
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class SearchLightEffect extends cc.Component {
 
     program: cc.GLProgram;
     startTime:number = Date.now();
@@ -47,9 +47,9 @@ export default class NewClass extends cc.Component {
     useShader() {
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
-            this.program.initWithString(SearchLightFrag.search_light_vert, SearchLightFrag.search_light_frag);
+            this.program.initWithString(SearchLight.search_light_vert, SearchLight.search_light_frag);
         } else {
-            this.program.initWithVertexShaderByteArray(SearchLightFrag.search_light_vert, SearchLightFrag.search_light_frag);
+            this.program.initWithVertexShaderByteArray(SearchLight.search_light_vert, SearchLight.search_light_frag);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_POSITION, cc.macro.VERTEX_ATTRIB_POSITION);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_COLOR, cc.macro.VERTEX_ATTRIB_COLOR);
             this.program.addAttribute(cc.macro.ATTRIBUTE_NAME_TEX_COORD, cc.macro.VERTEX_ATTRIB_TEX_COORDS);

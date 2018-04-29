@@ -10,6 +10,6 @@
 ---
 
 ### 使用说明
-- 拖到想要施加效果的节点上即可
+- 将`WaterWaveEffect.ts`和`WaterWaveFrag.ts`放到自己的项目  <br>将`WaterWaveEffect.ts`拖到想要施加效果的节点上
 
 - 这个shader不支持子节点，只能对单个节点起效果
