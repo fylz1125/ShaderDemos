@@ -18,7 +18,7 @@
 
 **使用说明**
 
-    效果器shader包含两个文件，例如高斯模糊效果包含GuassBlurEffect.ts和GuassBlurFrag.ts
+    效果器shader包含两个文件，例如高斯模糊效果包含GaussBlurEffect.ts和GaussBlurFrag.ts
 
     将对应的TS脚本拖到要施加效果的节点上即可以，方便快捷，自动施法，开箱即用 
 
@@ -30,7 +30,9 @@
 
 1. [光波特效](assets/resources/readme/FluxayEffect.md)：使图片产品波光流动效果，类似闪光特效
 
-2. [灰度图](assets/resources/readme/GrayEffect.md)：处理一个图片，使其变为灰色
+2. [高斯模糊](assets/resources/readme/GaussBlurs.md)：用高斯模糊算法使图片产生模糊效果
 
-2. 透明图标渐变切换
+3. [灰度图](assets/resources/readme/GrayEffect.md)：处理一个图片，使其变为灰色
+
+4. [图片透明渐变](assets/resources/readme/TransferEffect.md)：透明图片渐变切换
 

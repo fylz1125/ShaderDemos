@@ -541,7 +541,7 @@
     "target": {
       "__id__": 3
     },
-    "component": "GuassBlurEffect",
+    "component": "GaussBlurEffect",
     "handler": "onSliderBlurAmount",
     "customEventData": ""
   },

@@ -1,5 +1,5 @@
 import VertAndFrag from './VertAndFrag';
-import BlursFrag from './GuassBlursFrag';
+import BlursFrag from './GaussBlursFrag';
 const { ccclass, property } = cc._decorator;
 
 @ccclass
