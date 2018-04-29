@@ -44,6 +44,11 @@
 
 ---
 
+还有16个酷炫shader实例，在 `Scene/AmazingEffects` 目录下，目前暂无文档
+
+---
+
+
 ### 陆续更新，敬请关注，欢迎star，欢迎打赏 :blush:
 
 <div align="center">
