@@ -2,7 +2,9 @@
 
 ### 九尾狐游戏工作室出品
 
-### 不方便上github可以去码云 [码云源码](https://gitee.com/darkmoon/ShaderDemos)
+### github项目地址 [传送门](https://github.com/fylz1125/ShaderDemos)
+
+### 不方便上github可以去码云 [去码云](https://gitee.com/darkmoon/ShaderDemos)
 
 > Q群：704391772  
 ![Q群704391772](screenshots/qqgroup.JPG)
