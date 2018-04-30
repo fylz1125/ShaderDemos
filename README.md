@@ -47,9 +47,58 @@
 6. [战争迷雾探照灯](assets/resources/readme/SearchLight.md) 使一张图片产生战争迷雾效果，跟随触摸点照亮圆形区域
 
 ---
+### 酷炫shader实例
 
-还有16个酷炫shader实例，在 `Scene/AmazingEffects` 目录下，目前暂无文档
+- amazingcolors<br>
+![amazing](screenshots/amcolors.gif)
 
+- clouds<br>
+![clouds](screenshots/clouds.gif)
+
+- clover<br>
+![amazing](screenshots/clover.gif)
+
+- color circle<br>
+![amazing](screenshots/colorcircle.gif)
+
+- color lights<br>
+![amazing](screenshots/colorlights.gif)
+
+- deform flower<br>
+![amazing](screenshots/deformflower.gif)
+
+- flame fire<br>
+![amazing](screenshots/flamefire.gif)
+
+- glow circle<br>
+![amazing](screenshots/glowcircle.gif)
+
+- grassy<br>
+![amazing](screenshots/grassy.gif)
+
+- beat heart<br>
+![amazing](screenshots/heart.gif)
+
+- light circle<br>
+![amazing](screenshots/lightcircle.gif)
+
+- light nets<br>
+![amazing](screenshots/lightnets.gif)
+
+- light run<br>
+![amazing](screenshots/lightrun.gif)
+
+- obsession<br>
+![amazing](screenshots/obsession.gif)
+
+- swirling dots<br>
+![amazing](screenshots/swirlingdots.gif)
+
+- tweaked<br>
+![amazing](screenshots/tweaked.gif)
+
+- Valentine Day<br>
+![amazing](screenshots/valentineday.gif)
 ---
 
 
