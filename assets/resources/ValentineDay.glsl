@@ -482,9 +482,9 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
         color.rgb += sin(sTime * kPI) * Spark(uv, sPos, 0.0) * vec3(1.0, 0.4, 0.4);
     }
     
-    
+    float ratio = .5 * resolution.y/resolution.x;
     // Apply vignetting effect.
-    color.rgb -= color.rgb*0.2*dot(uv, uv);
+    color.rgb -= color.rgb*ratio*dot(uv, uv);
 
     fragColor = vec4(gFadeTime * color, 1.0);
 }
