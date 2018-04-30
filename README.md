@@ -68,7 +68,7 @@
 ![amazing](screenshots/deformflower.gif)
 
 - flame fire<br>
-![amazing](screenshots/flamefire.gif)
+![amazing](screenshots/flame.gif)
 
 - glow circle<br>
 ![amazing](screenshots/glowcircle.gif)
