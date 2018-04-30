@@ -1,15 +1,11 @@
-#define SHADERTOY
 
-// -- Uniforms -----------------------------------------------------------------
-
-#ifndef SHADERTOY
-uniform vec3 iResolution;
-uniform vec3 iMouse;
-uniform sampler2D iChannel0;
+#ifdef GL_ES
+precision mediump float;
 #endif
 
-// -- Constants ----------------------------------------------------------------
-
+uniform float time;
+uniform vec2 resolution;
+varying vec2 v_texCoord;
 // Camera constants
 
 const float kFOV = 0.785398;                           // Camera field of view 
@@ -64,7 +60,7 @@ struct Ray
 
 struct RayHit
 {
-    float time;
+    float rtime;
     float material;
 };
 
@@ -216,7 +212,7 @@ DistanceSample NewDistanceSample(float d, float s, float m)
 RayHit NewRayHit(float t, float m)
 {
     RayHit h;
-    h.time = t;
+    h.rtime = t;
     h.material = m;
     return h;
 }
@@ -275,7 +271,7 @@ DistanceSample SDFHeart(vec3 p)
     p.z  /= mix(1.0, d1, gHeartMorph);
     
     // Increase size whenever the mouse is close.
-	float mouseOverSize = 1.0+0.7*smoothstep(0.2, 0.0, length((iMouse.xy / iResolution.xy) - 0.5));
+	float mouseOverSize = 1.0+0.7*smoothstep(0.2, 0.0, length(1. - 0.5));
 	
     // Compute sphere's SDF
     return NewDistanceSample(length(p) - 0.8 - 0.5 * gHeartMorph * mouseOverSize, 0.5, kMaterialHeart);
@@ -431,7 +427,7 @@ vec3 Colorize(Ray ray, RayHit hit)
     // If there was an intersection, compute normal and the hit surface color.
     if (hit.material != kMaterialNone)
     {
-        vec3 p = ray.direction * hit.time + ray.origin;
+        vec3 p = ray.direction * hit.rtime + ray.origin;
         vec3 n = SceneNormal(p);
         
         color.rgb = mix(vec3(0.0, 0.0, 0.0), SkyColor(reflect(ray.direction, n)), 1.0 - pow(length(n.xz), 16.0));
@@ -452,7 +448,7 @@ vec3 Colorize(Ray ray, RayHit hit)
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
 	// Setup globals.
-	gAnimTime      = mod(1.5 * iGlobalTime, 20.0);
+	gAnimTime      = mod(1.5 * time, 20.0);
 	gHeartPos      = vec3(0.0, -3.5 + 5.0 * smoothstep(1.0, 3.0, gAnimTime), -12.0);
 	gHeartMorph    = smoothstep(2.5, 4.0, gAnimTime);
 	gHeartColoring = smoothstep(4.0, 6.0, gAnimTime);
@@ -461,8 +457,11 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
 	gFadeTime      = smoothstep(0.0, 1.0, gAnimTime) * smoothstep(20.0, 19.0, gAnimTime);
 
     // Get uvs in [-1 1] range and correct them with the aspect ratio.
-    vec2 uv = 2.0*(fragCoord.xy / iResolution.xy)-1.0;
-    uv *= vec2(iResolution.x / iResolution.y, 1.0);
+    // vec2 uv = 2.0*(fragCoord.xy / resolution.xy)-1.0;
+    vec2 ruv = 2.0*v_texCoord - 1.0;
+    // 反转y坐标
+    vec2 uv = vec2(ruv.x, - ruv.y);
+    uv *= vec2(resolution.x / resolution.y, 1.0);
     
     // Generate first ray and raymarch along scene.
     Ray ray = ViewportToRay(uv, kOnes.zzz, QuatFromAxisAngle(vec3(1.0, 0.0, 0.0), radians(6.0)));
