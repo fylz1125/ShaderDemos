@@ -14,7 +14,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     vec2 q = uv+2./iResolution.x*(s(uv)-s(uv+rs));
     //反转y
     //q.y=1.-q.y;
-    fragColor = texture2D(iChannel0,q);
+    fragColor = texture2D(iChannel3,q);
 }
 void main()
 {
