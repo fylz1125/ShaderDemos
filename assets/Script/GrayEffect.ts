@@ -6,7 +6,7 @@ export default class GrayEffect extends cc.Component {
     @property
     isAllChildrenUse: boolean = false;
 
-    program: cc.GLProgram;
+    program: cc.GLProgram;// ShaderProgram
 
     onLoad() {
         this.grayShader();

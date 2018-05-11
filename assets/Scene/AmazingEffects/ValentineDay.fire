@@ -218,7 +218,7 @@
     "_prefab": {
       "__id__": 9
     },
-    "_id": "b466CnSv1MCaW30hUW2SuV",
+    "_id": "0dHZW9WldJq6JVGXPVolVq",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -235,7 +235,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 903,
+      "width": 900,
       "height": 600
     },
     "_rotationX": 0,
