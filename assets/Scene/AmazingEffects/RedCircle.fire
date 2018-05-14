@@ -288,7 +288,7 @@
       "__id__": 6
     },
     "_enabled": true,
-    "fragShader": "jetstream"
+    "fragShader": "redcircle"
   },
   {
     "__type__": "cc.PrefabInfo",
