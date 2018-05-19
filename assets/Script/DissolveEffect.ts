@@ -15,10 +15,6 @@ export default class DissolveEffect extends cc.Component {
     onLoad() {
         this.enabled = false;
     }
-    start() {
-        // init logic
-        
-    }
 
     useDissolve() {
         // 绑定噪音纹理
