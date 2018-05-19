@@ -4,8 +4,6 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class TransferEffect extends cc.Component {
 
-    @property(cc.Node)
-    bg: cc.Node = null;
 
     @property
     isAllChildrenUse: boolean = false;

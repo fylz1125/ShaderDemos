@@ -65,11 +65,27 @@ declare module cc {
          * @param f1 
          * @param f2 
          */
-        setUniformLocationWith2f(location,f1,f2)
+        setUniformLocationWith2f(location, f1, f2);
+        
+        /**
+         * calls glUniform1i only if the values are different than the previous call for this same shader program.
+         * @param location WebGLUniformLocation
+         * @param i1 
+         */
+        setUniformLocationWith1i(location:WebGLUniformLocation, i1);
     }
 
     export class GLProgramState{
 
         static getOrCreateWithGLProgram(program:GLProgram):any;
+    }
+
+    export class gl{
+        /**
+         * If the texture is not already bound to a given unit, it binds it.<br/>If cc.macro.ENABLE_GL_STATE_CACHE is disabled, it will call glBindTexture() directly.
+         * @param textureUnit 
+         * @param texture 
+         */
+        static bindTexture2DN(textureUnit:number, texture:Texture2D);
     }
 }

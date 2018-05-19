@@ -11290,7 +11290,11 @@ declare module cc {
 	Depending on how you create the cc.Texture2D object, the actual image area of the texture might be smaller than the texture dimensions <br/>
 	 i.e. "contentSize" != (pixelsWide, pixelsHigh) and (maxS, maxT) != (1.0, 1.0).                                           <br/>
 	Be aware that the content of the generated textures will be upside-down! </p> */
-	export class Texture2D extends RawAsset implements EventTarget {		
+	export class Texture2D extends RawAsset implements EventTarget {
+		/**
+		 * 纹理id
+		 */
+		_glID;
 		/** !#en
 		The url of the texture, this coule be empty if the texture wasn't created via a file.
 		!#zh
