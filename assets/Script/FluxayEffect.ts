@@ -21,13 +21,13 @@ export default class FluxayEffect extends cc.Component {
         } else {
             this.fragStr = Fluxay.fluxay_frag_super;
         }
-        this.userWater();
+        this.useWater();
     }
 
     start() {
     }
 
-    userWater() {
+    useWater() {
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
             this.program.initWithString(Fluxay.fluxay_vert, this.fragStr);
