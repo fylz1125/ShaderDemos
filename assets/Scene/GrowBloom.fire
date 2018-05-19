@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": null,
-    "_id": "c7d5be04-3371-4f0a-9b8c-6efcfb3396a0",
+    "_id": "2ccc48ba-1d67-4b31-82bd-b551dbe7ef1c",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -66,11 +66,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 10
+        "__id__": 9
       }
     ],
     "_prefab": null,
-    "_id": "7bVwKRyGpFiI/mWeevAFi2",
+    "_id": "b1lq/dj2JMfpg5MJ+8927j",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -124,7 +124,7 @@
     "_prefab": {
       "__id__": 5
     },
-    "_id": "3f4TYdBpxGL6AgA4z4+598",
+    "_id": "89TPOqgudBgKzo2pb4nLnC",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -199,7 +199,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "obsession",
+    "_name": "dragon_nest",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -215,16 +215,14 @@
         "__id__": 8
       }
     ],
-    "_prefab": {
-      "__id__": 9
-    },
-    "_id": "37CoChbT5D9KODtN5Cz23R",
+    "_prefab": null,
+    "_id": "a6T1tFqAlOaIJYnFvh+KJ9",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -235,8 +233,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 400,
-      "height": 400
+      "width": 284,
+      "height": 399
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -263,10 +261,10 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "a23235d1-15db-4b95-8439-a2e005bfff91"
+      "__uuid__": "d153fc2f-63bc-4ef8-86b2-48eca61afc55"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -288,18 +286,7 @@
       "__id__": 6
     },
     "_enabled": true,
-    "fragShader": "colorcircle"
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 6
-    },
-    "asset": {
-      "__uuid__": "08684cf8-ecb0-4e5e-9bcb-fee241a49c42"
-    },
-    "fileId": "9ftJJWW2tH36WbyYAJFkrS",
-    "sync": false
+    "fragShader": "glowbloom"
   },
   {
     "__type__": "cc.Canvas",

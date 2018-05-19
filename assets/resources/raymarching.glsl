@@ -174,7 +174,8 @@ vec4 raymarch_ball(vec2 coord)
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
 	vec2 uv = (v_texCoord * resolution / min(resolution.x, resolution.y)) * 2.0 - vec2(resolution.x / resolution.y, 1.0);
-    fragColor = merge_colours(raymarch_ball(uv), vec4(0.0, 0.0, 0.0, 1.0));
+    vec4 color = merge_colours(raymarch_ball(uv), vec4(0.0, 0.0, 0.0, 1.));
+    fragColor = color;
 }
 void main()
 {

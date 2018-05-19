@@ -5,6 +5,7 @@ precision mediump float;
 uniform float time;
 uniform vec2 resolution;
 varying vec2 v_texCoord;
+varying vec4 v_fragmentColor;
 
 mat2 rotate2d(float angle){
     return mat2(cos(angle),-sin(angle),
@@ -32,6 +33,7 @@ vec3 paintCircle (vec2 uv, vec2 center, float rad, float width) {
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
+    vec4 myC = texture2D(CC_Texture0, v_texCoord);
     // 移植需要转换坐标 v_texCoord.xy
 	// vec2 uv = fragCoord.xy / iResolution.xy;
 	vec2 uv = v_texCoord.xy;
@@ -52,9 +54,12 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     
     //paint white circle
     color += paintCircle(uv, center, radius, 0.01);
+    float al = 1.;
+    // if(color.r + color.g + color.b == 0.){
+    //     al = 0.;
+    // }
     
-    
-	fragColor = vec4(color, 1.0);
+	fragColor = vec4(color, al);
 }
 void main()
 {
