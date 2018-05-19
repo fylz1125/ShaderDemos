@@ -276,7 +276,6 @@
       "__id__": 5
     },
     "_enabled": true,
-    "bg": null,
     "isAllChildrenUse": false
   },
   {
@@ -515,7 +514,7 @@
       "__id__": 5
     },
     "component": "TransferEffect",
-    "handler": "testShaderB",
+    "handler": "useShader",
     "customEventData": ""
   },
   {

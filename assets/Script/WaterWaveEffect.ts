@@ -16,14 +16,14 @@ export default class WaterWaveEffect extends cc.Component {
     onLoad() {
         this.resolution.x = ( this.node.getContentSize().width );
         this.resolution.y = ( this.node.getContentSize().height );
-        this.userWater();
+        this.useWater();
         
     }
 
     start() {
     }
 
-    userWater() {
+    useWater() {
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
             this.program.initWithString(WaterWave.waterwave_vert, WaterWave.waterwave_frag);

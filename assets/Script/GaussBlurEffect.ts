@@ -21,13 +21,13 @@ export default class GaussBlurEffect extends cc.Component {
     onLoad() {
         this.bluramount = this.slider.progress / 10;
         this.blurText.string = (this.slider.progress*100).toString();
-        this.userBlur();
+        this.useBlur();
     }
 
     start() {
     }
 
-    userBlur() {
+    useBlur() {
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
             this.program.initWithString(BlursFrag.blurs_vert, BlursFrag.blurs_frag);

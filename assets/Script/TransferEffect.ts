@@ -16,7 +16,7 @@ export default class TransferEffect extends cc.Component {
         this.enabled = false;
     }
 
-    testShaderB() {
+    useShader() {
         let bgSp: cc.Sprite = this.node.getComponent(cc.Sprite);
         this.program = new cc.GLProgram();
         if (!cc.sys.isNative) {
