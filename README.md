@@ -46,6 +46,8 @@
 
 6. [战争迷雾探照灯](assets/resources/readme/SearchLight.md) 使一张图片产生战争迷雾效果，跟随触摸点照亮圆形区域
 
+7. [溶解特效](assets/resources/readme/DissolveEffect.md)使一张图片产生溶解消失的效果
+
 ---
 ### 酷炫shader实例
 
