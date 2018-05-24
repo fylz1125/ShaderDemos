@@ -1,8 +1,8 @@
 {
     "shader-toy.textures": {
-        "0": "file:///E:/cocos/ShaderDemos/assets/resources/dragon_nest.png",
-        "1": "file:///E:/cocos/ShaderDemos/assets/resources/noise.png",
-        "2": "file:///E:/cocos/ShaderDemos/assets/resources/galaxy.mp3",
-        "3": "file:///E:/cocos/ShaderDemos/assets/resources/startbg.jpg"
+        "0": "file:///D:/cocos/ShaderDemos/assets/resources/startbg.jpg",
+        "1": "file:///D:/cocos/ShaderDemos/assets/resources/game_bg.jpg",
+        "2": "file:///D:/cocos/ShaderDemos/assets/resources/noise.png",
+        "3": "file:///D:/cocos/ShaderDemos/assets/resources/startbg.jpg"
     }
 }
