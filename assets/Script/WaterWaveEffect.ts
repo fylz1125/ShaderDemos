@@ -24,6 +24,7 @@ export default class WaterWaveEffect extends cc.Component {
     }
 
     useWater() {
+        if (this.program) return;
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
             this.program.initWithString(WaterWave.waterwave_vert, WaterWave.waterwave_frag);
