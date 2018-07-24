@@ -31,7 +31,7 @@ export default class BlursFrag {
     {
     vec2 uv = v_texCoord.xy;
     vec4 blurred_image = vec4(0.);
-    #define repeats 60.
+    #define repeats 5.
     for (float i = 0.; i < repeats; i++) { 
     vec2 q = vec2(cos(degrees((i/repeats)*360.)),sin(degrees((i/repeats)*360.))) * (rand(vec2(i,uv.x+uv.y))+bluramount); 
     vec2 uv2 = uv+(q*bluramount);
