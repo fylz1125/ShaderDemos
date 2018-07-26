@@ -23,33 +23,58 @@ export default class CircleFrag {
     varying vec4 v_fragmentColor;
     varying vec2 v_texCoord;
 
-    uniform vec2 size;
-    uniform vec2 radiusRatio;
-    uniform vec2 deviation;
+    uniform float u_edge;
+    uniform float u_offset; 
 
     void main()
     {
-        float differ = 0.0;
+        float edge = u_edge;
         float dis = 0.0;
-        if (size.x < size.y)
+        vec2 texCoord = v_texCoord;
+        if ( texCoord.x < edge )
         {
-            differ = 1.0 - size.x/size.y;
-            dis = distance(vec2(v_texCoord.x, v_texCoord.y * (1.0 + differ)), vec2(radiusRatio.x, radiusRatio.y + differ/2.0) + deviation);
+            if ( texCoord.y < edge )
+            {
+                dis = distance( texCoord, vec2(edge, edge) );
+            }
+            if ( texCoord.y > (1.0 - edge) )
+            {
+                dis = distance( texCoord, vec2(edge, (1.0 - edge)) );
+            }
+        }
+        else if ( texCoord.x > (1.0 - edge) )
+        {
+            if ( texCoord.y < edge )
+            {
+                dis = distance( texCoord, vec2((1.0 - edge), edge ) );
+            }
+            if ( texCoord.y > (1.0 - edge) )
+            {
+                dis = distance( texCoord, vec2((1.0 - edge), (1.0 - edge) ) );
+            }
+        }
+  
+        if(dis > 0.001)
+        {
+            // 外圈沟
+            float gap = edge * 0.02;
+            if(dis <= edge - gap)
+            {
+                gl_FragColor = texture2D( CC_Texture0,texCoord);
+            }
+            else if(dis <= edge)
+            {
+                // 平滑过渡
+                float t = smoothstep(0.,gap,edge-dis);
+                vec4 color = texture2D( CC_Texture0,texCoord);
+                gl_FragColor = vec4(color.rgb,t);
+            }
         }
         else
         {
-            differ = size.x/size.y - 1.0;
-            dis = distance(vec2(v_texCoord.x * (1.0 + differ), v_texCoord.y), vec2(radiusRatio.x + differ/2.0, radiusRatio.y) + deviation);
-        }
-        
-        if (radiusRatio.x - dis <= 20.2 && radiusRatio.y - dis <= 20.2)
-        {
-            gl_FragColor = texture2D(CC_Texture0,v_texCoord);
-        }
-        else
-        {
-            gl_FragColor = vec4(1.0,.1,0.2,0.);
+            gl_FragColor = texture2D( CC_Texture0,texCoord);
         }
     }
+
     `;
 }

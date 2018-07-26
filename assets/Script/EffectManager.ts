@@ -43,7 +43,7 @@ export default class EffectManager extends cc.Component {
     }
 
     useShader() {
-        this.program = new cc.GLProgram();
+        this.program = new cc.GLProgram(); 
         if (cc.sys.isNative) {
             this.program.initWithString(this.default_vert, this.frag_glsl);
         } else {

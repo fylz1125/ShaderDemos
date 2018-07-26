@@ -128,9 +128,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 59,
-      "g": 75,
-      "b": 138,
+      "r": 237,
+      "g": 239,
+      "b": 247,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -199,7 +199,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "sunwukong",
+    "_name": "angel",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -216,7 +216,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "2bYZ0rrV1IR7ckBcpo1YVu",
+    "_id": "5f4afdGdpP7IYKaiPKA/3E",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -233,8 +233,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 116
+      "width": 200,
+      "height": 200
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -242,8 +242,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 29,
-      "y": 3
+      "x": 0,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -261,7 +261,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "9d0770e9-3652-4585-9dfc-e613c29d6b12"
+      "__uuid__": "40b833fc-3888-4059-afbc-ce5d4e6eac70"
     },
     "_type": 0,
     "_sizeMode": 1,

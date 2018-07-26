@@ -6,17 +6,10 @@ const {ccclass, property} = cc._decorator;
 export default class NewClass extends cc.Component {
 
     program: cc.GLProgram;
-    size = { x: 0.0, y: 0.0 };
-    radiusRatio = { x: 20.0, y: 20.0 };
-    deviation = { x: 5.0, y: 5.0 };
+    edge = 0.5;
+    offset = 0.001;
+
     onLoad() {
-        this.size.x = ( this.node.getContentSize().width );
-        this.size.y = (this.node.getContentSize().height);
-        cc.log('size is x:' + this.size.x + ' y:' + this.size.y);
-        this.radiusRatio.x = 20.0;
-        this.radiusRatio.y = 20.0;
-        this.deviation.x = 10.0;
-        this.deviation.y = 10.0;
         this.makeCircle();
     }
 
@@ -25,7 +18,7 @@ export default class NewClass extends cc.Component {
     }
 
     makeCircle() {
-        if (this.program) return;
+        if (this.program) return;    
         this.program = new cc.GLProgram();
         if (cc.sys.isNative) {
             this.program.initWithString(CirclePortrait.circle_vert, CirclePortrait.circle_frag);
@@ -41,16 +34,13 @@ export default class NewClass extends cc.Component {
 
         if (cc.sys.isNative) {
             var glProgram_state = cc.GLProgramState.getOrCreateWithGLProgram(this.program);
-            glProgram_state.setUniformVec2("radiusRatio", this.radiusRatio);
-            glProgram_state.setUniformVec2("size", this.size);
-            glProgram_state.setUniformVec2( "deviation", this.deviation );
+            glProgram_state.setUniformFloat('u_edge', this.edge);
+            glProgram_state.setUniformFloat("u_offset", this.offset);
         } else {
-            let rd = this.program.getUniformLocationForName( "radiusRatio" );
-            let sz = this.program.getUniformLocationForName("size");
-            let de = this.program.getUniformLocationForName("deviation");
-            this.program.setUniformLocationWith2f(rd, this.radiusRatio.x,this.radiusRatio.y );
-            this.program.setUniformLocationWith2f(sz, this.size.x, this.size.y);
-            this.program.setUniformLocationWith2f(de, this.deviation.x,this.deviation.y);
+            let ed = this.program.getUniformLocationForName( "u_edge" );
+            let ofst = this.program.getUniformLocationForName("u_offset");
+            this.program.setUniformLocationWith1f(ed, this.edge );
+            this.program.setUniformLocationWith1f(ofst, this.offset);
         }
         this.setProgram(this.node.getComponent(cc.Sprite)._sgNode, this.program);
     }
