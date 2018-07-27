@@ -68,6 +68,8 @@ export default class CircleFrag {
                 float t = smoothstep(0.,gap,edge-dis);
                 vec4 color = texture2D( CC_Texture0,texCoord);
                 gl_FragColor = vec4(color.rgb,t);
+            }else{
+                gl_FragColor = vec4(0.,0.,0.,0.);
             }
         }
         else
