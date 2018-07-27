@@ -5,11 +5,14 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class NewClass extends cc.Component {
 
+    @property(cc.Slider)
+    cornerSlider: cc.Slider = null;
+
     program: cc.GLProgram;
-    edge = 0.5;
-    offset = 0.001;
+    edge = 0.05;
 
     onLoad() {
+        this.edge = this.cornerSlider.progress / 2;
         this.makeCircle();
     }
 
@@ -35,12 +38,9 @@ export default class NewClass extends cc.Component {
         if (cc.sys.isNative) {
             var glProgram_state = cc.GLProgramState.getOrCreateWithGLProgram(this.program);
             glProgram_state.setUniformFloat('u_edge', this.edge);
-            glProgram_state.setUniformFloat("u_offset", this.offset);
         } else {
             let ed = this.program.getUniformLocationForName( "u_edge" );
-            let ofst = this.program.getUniformLocationForName("u_offset");
             this.program.setUniformLocationWith1f(ed, this.edge );
-            this.program.setUniformLocationWith1f(ofst, this.offset);
         }
         this.setProgram(this.node.getComponent(cc.Sprite)._sgNode, this.program);
     }
@@ -52,6 +52,20 @@ export default class NewClass extends cc.Component {
         } else {
             node.setShaderProgram(program);
         }
+    }
+
+    onSliderChange(slider: cc.Slider, eventType: any) {
+        this.edge = Number((slider.progress / 2).toFixed(2));
+        if (!this.program) return;
+        this.program.use();
+        if (cc.sys.isNative) {
+            var glProgram_state = cc.GLProgramState.getOrCreateWithGLProgram(this.program);
+            glProgram_state.setUniformFloat("u_edge", this.edge);
+        } else {
+            let ed = this.program.getUniformLocationForName("u_edge");
+            this.program.setUniformLocationWith1f(ed, this.edge);
+        }
+
     }
 
     // update (dt) {}
