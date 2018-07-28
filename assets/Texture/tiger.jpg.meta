@@ -5,7 +5,7 @@
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "1006CA05": {
+    "tiger": {
       "ver": "1.0.3",
       "uuid": "078f41b5-1e3a-430c-ae7d-0422a79ef624",
       "rawTextureUuid": "8fa256d5-5fd8-4129-aedb-946b9f987199",
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 1000,
-      "height": 738,
-      "rawWidth": 1000,
-      "rawHeight": 738,
+      "width": 587,
+      "height": 434,
+      "rawWidth": 587,
+      "rawHeight": 434,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

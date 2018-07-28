@@ -30,7 +30,6 @@ export default class EffectManager extends cc.Component {
         cc.director.setDisplayStats(true);
         this.resolution.x = (this.node.getContentSize().width );
         this.resolution.y = (this.node.getContentSize().height);
-        
         let self = this;
         cc.loader.loadRes(this.fragShader, function (err, data) {
             if (err)
