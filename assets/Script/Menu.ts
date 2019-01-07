@@ -11,6 +11,9 @@ export default class NewClass extends cc.Component {
     @property(cc.Label)
     sceneName: cc.Label = null;
 
+    @property(cc.AudioClip)
+    bgm: cc.AudioClip = null;
+
     currentSceneIndex: number = 0;
     sceneList: string[] = new Array<string>();
 
@@ -19,6 +22,7 @@ export default class NewClass extends cc.Component {
         cc.director.setDisplayStats(true);
         cc.game.addPersistRootNode(this.node);
 
+        cc.audioEngine.playMusic(this.bgm, true);
         // 初始化场景数组
         let scenes = cc.game._sceneInfos;//隐藏属性，拿过来用
         let amazing: string[] = new Array<string>();

@@ -2839,7 +2839,15 @@ declare module cc {
 		var audioID = cc.audioEngine.play(path, false, 0.5);
 		``` 
 		*/
-		static play(filePath: string, loop: boolean, volume: number): number;		
+		static play(filePath: string, loop: boolean, volume: number): number;
+		
+		/**
+		 * 
+		 * @param audioClip the music you want to play
+		 * @param loop Whether the music loop or not
+		 */
+		static playMusic(audioClip: cc.AudioClip, loop: boolean);
+		
 		/**
 		!#en Set audio loop.
 		!#zh 设置音频是否循环。
