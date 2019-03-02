@@ -1,8 +1,9 @@
 {
+    "shader-toy.useInShaderTextures":false,
     "shader-toy.textures": {
-        "0": "file:///D:/cocos/ShaderDemos/assets/resources/startbg.jpg",
-        "1": "file:///D:/cocos/ShaderDemos/assets/resources/game_bg.jpg",
-        "2": "file:///D:/cocos/ShaderDemos/assets/resources/noise.png",
-        "3": "file:///D:/cocos/ShaderDemos/assets/resources/startbg.jpg"
+        "0": "file://./assets/resources/startbg.jpg",
+        "1": "file://./assets/resources/game_bg.jpg",
+        "2": "file://./assets/resources/noise.png",
+        "3": "file://./assets/resources/startbg.jpg"
     }
 }
