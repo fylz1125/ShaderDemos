@@ -1,6 +1,6 @@
-# Shader effects for cocos creator
+# 自定义shader
 
-### 九尾狐游戏工作室出品
+*Author：大掌教*<br>`用心做游戏`
 
 ### github项目地址 [传送门](https://github.com/fylz1125/ShaderDemos)
 
@@ -113,10 +113,4 @@
 ---
 
 
-### 陆续更新，敬请关注，欢迎star，欢迎打赏 :blush:
-
-<div align="center">
-<img src="screenshots/alipay2.jpg">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="screenshots/wechatpay2.jpg">
-</div>
+### 陆续更新，敬请关注，欢迎star
