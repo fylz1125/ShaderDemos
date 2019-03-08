@@ -1,7 +1,7 @@
 # 自定义shader
 
 *Author：大掌教*<br>
-用心做游戏
+--开开心心做游戏--
 
 ### github项目地址 [传送门](https://github.com/fylz1125/ShaderDemos)
 
