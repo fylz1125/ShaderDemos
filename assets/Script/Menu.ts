@@ -19,7 +19,7 @@ export default class NewClass extends cc.Component {
 
     // 初始化
     onLoad() {
-        cc.director.setDisplayStats(true);
+        cc.debug.setDisplayStats(true);
         cc.game.addPersistRootNode(this.node);
 
         cc.audioEngine.playMusic(this.bgm, true);
@@ -102,3 +102,4 @@ export default class NewClass extends cc.Component {
     // 每帧更新函数
     // update(dt) {}
 }
+ 
