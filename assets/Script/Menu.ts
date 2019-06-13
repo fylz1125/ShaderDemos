@@ -1,7 +1,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class Menu extends cc.Component {
     @property(cc.Label)
     instructionLabel: cc.Label = null;
 
@@ -11,7 +11,9 @@ export default class NewClass extends cc.Component {
     @property(cc.Label)
     sceneName: cc.Label = null;
 
-    @property(cc.AudioClip)
+    @property({
+        type: cc.AudioClip
+    })
     bgm: cc.AudioClip = null;
 
     currentSceneIndex: number = 0;

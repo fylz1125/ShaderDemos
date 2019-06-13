@@ -1,22 +1,22 @@
 # 2.0 材质系统自定义shader
 *Author：大掌教*<br>
---一起做游戏--
 
-**腾讯课堂地址： https://ke.qq.com/course/378768?tuin=3ce6693**
+必须要给大家道个歉，2.0的shader和2.1的材质一直没有更新。
 
-## 目录
-- [前言](#前言)
+现在已经在开始完善2.0的shader了，我会把项目文件进行梳理，结构重新整理。
 
-## 前言
+一个好的方法是关注我的公众号，第一手文档和源码都会通过公号推送。
 
-creator 2.x推出了新的Material系统，1.x自定义shader的方式已完全不适用。
+## 关注我的微信公众号，以便于随时跟踪我的源码和文档
 
-本项目由原1.x的shader升级为2.0版本材质系统，为开源社区共享自己的微薄之力。
+#### 直接搜索公众号ID：darkpalm
+#### 或者掏出手机扫码：
 
-我在腾讯课堂开了直播课，用捕鱼案例讲解creator游戏开发入门，希望新入坑的同学可以关注。
+<div align=center>
+<img src="https://img-blog.csdnimg.cn/20190605101043274.png"  />
+</div>
 
 
-## 源码地址
 
 ##### github地址: [https://github.com/fylz1125/ShaderDemos](https://github.com/fylz1125/ShaderDemos)
 
