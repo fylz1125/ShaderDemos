@@ -5,6 +5,11 @@
 
 是的，你没有看错，是最好的，没有之一！
 
+<div align=center>
+<img src="screenshots/cover.gif"  />
+</div>
+
+
 -----
 
 ### 2.0.10新版本特性
