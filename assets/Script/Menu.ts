@@ -51,6 +51,9 @@ export default class Menu extends cc.Component {
         let lbSequence = cc.sequence(lbSpawn, finished,);
         this.authorLb.node.runAction(lbSequence);
     }
+    goGlackhole() {
+        cc.director.loadScene("Blackhole");
+    }
 
 
     // 每帧更新函数
