@@ -50,7 +50,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
     // 换成resolution
     vec2 rs = resolution.xy;
-    // 换成纹理坐标v_texCoord.xy
+    // 换成纹理坐标 uv0
     vec2 uv = uv0.xy;
     vec2 q = uv+2./resolution.x*(s(uv)-s(uv+rs));
     //反转y
@@ -175,7 +175,6 @@ void mainImage(out vec4 fragColor,in vec2 fragCoord)
   vec2 uv=uv0.xy;
   uv.x=2.*uv.x-1.;
   uv.y=1.-2.*uv.y;
-  // uv=2.*uv-1.;
   uv.x*=resolution.x/resolution.y;
 
   vec3 col=electric(uv*2.);
@@ -187,7 +186,33 @@ void main()
     mainImage(gl_FragColor, gl_FragCoord.xy);
 }
         `
-    }
+  },
+  {
+    name: "Blackhole",//黑洞
+    vert: MVP,
+    defines: [],
+    frag: `
+uniform vec3 resolution;
+varying vec2 uv0;
+#define f(a) exp(-10.*pow(length(U-.52*cos(a+vec2(0.0,33.0))), 2.))
+
+void mainImage(out vec4 fragColor, in vec2 fragCoord)
+{
+    vec2 rs = resolution.xy;
+    vec2 U = (2.*uv0*rs-rs)/rs.y;
+    // 翻转Y
+    U.y=-U.y;
+    
+    fragColor = (.5-.5*cos(min(6.*length(U),6.3)))*(.7*vec4(1.,.25,0.0,.0)
+    +(f(.65)+f(1.6)+f(2.8))*vec4(.8,.8,.5,0.))
+    +vec4(vec3(.0),1.);//黑色背景
+}
+void main()
+{
+    mainImage(gl_FragColor, gl_FragCoord.xy);
+}
+    `
+  }
 ];
 
 

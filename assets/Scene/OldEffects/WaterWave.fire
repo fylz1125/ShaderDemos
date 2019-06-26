@@ -292,20 +292,20 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_state": 115,
+    "_state": 1,
     "_atlas": null,
     "_id": "186ycTPAZGmreYAjK1vjvt"
   },
   {
-    "__type__": "531214NkOVBL6H+6VeBXZba",
+    "__type__": "1051azP8/dDh4jHNUC7U4lc",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 5
     },
     "_enabled": true,
-    "_shader": 115,
-    "_id": "bf3mv78a9FEpeLQzkg0Q1T"
+    "_shader": 1,
+    "_id": "b8JvnBsM1Ae64rjTeyDVwJ"
   },
   {
     "__type__": "cc.Canvas",

@@ -54,6 +54,7 @@ export default class ShaderComponent extends cc.Component {
         switch (shader) {
             case ShaderType.WaterWave:
             case ShaderType.StartLighting:
+            case ShaderType.Blackhole:
                 material.setResolution(this.node.width, this.node.height);
                 break;
             default:

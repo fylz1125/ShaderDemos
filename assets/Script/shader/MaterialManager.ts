@@ -18,7 +18,8 @@ export enum ShaderType {
     // 自定义开始
     GrayScaling,
     WaterWave,
-    StartLighting
+    StartLighting,
+    Blackhole
 }
 
 /**
@@ -30,7 +31,8 @@ export let ShaderEffects = cc.Enum({
     灰色: -1,
     灰度图: 0,
     水波: 1,
-    闪电:2
+    闪电: 2,
+    黑洞照片:3
 })
 
 export default class MaterialManager {
