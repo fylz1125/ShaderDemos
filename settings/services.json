@@ -10,7 +10,7 @@
 			"service_sample_url": "https://github.com/cocos-creator/tutorial-dark-slash/tree/analytics",
 			"service_dev_url": "http://analytics.cocos.com/realtime/jump_to/<app_id>",
 			"service_type": "3",
-			"service_type_zh": "公司及个人游戏",
+			"service_type_zh": "公司和个人游戏",
 			"support_platform": [
 				"Android",
 				"iOS",
