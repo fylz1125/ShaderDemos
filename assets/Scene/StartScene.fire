@@ -544,7 +544,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 333.38,
+      "width": 273.38,
       "height": 30
     },
     "_anchorPoint": {
@@ -587,8 +587,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_string": "微信公众号ID：darkpalm",
-    "_N$string": "微信公众号ID：darkpalm",
+    "_string": "公众号ID：darkpalm",
+    "_N$string": "公众号ID：darkpalm",
     "_fontSize": 30,
     "_lineHeight": 30,
     "_enableWrapText": true,
