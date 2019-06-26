@@ -14,7 +14,7 @@ void main () {
 `;
 const ShaderFSH = [
     {
-        name: "GrayScaling",
+        name: "GrayScaling",//灰度图
         vert: MVP,
         defines: [],
         frag: `
@@ -30,7 +30,7 @@ void main () {
     },
 
     {
-        name: "WaterWave",
+        name: "WaterWave",//水波
         vert: MVP,
         defines: [],
         frag: `
@@ -64,7 +64,7 @@ void main()
 `
     },
     {
-        name: "StartLighting",
+        name: "StartLighting",//封面的闪电
         vert: MVP,
         defines: [],
         frag: `
