@@ -449,7 +449,7 @@
       }
     ],
     "_prefab": null,
-    "_opacity": 255,
+    "_opacity": 0,
     "_color": {
       "__type__": "cc.Color",
       "r": 247,
@@ -475,8 +475,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0,
+      "y": 0,
       "z": 1
     },
     "_rotationX": 0,
@@ -520,7 +520,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "New Label copy",
+    "_name": "wechatid",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -560,8 +560,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0,
+      "y": 0,
       "z": 1
     },
     "_rotationX": 0,
@@ -1114,9 +1114,15 @@
       "__id__": 17
     },
     "_enabled": true,
-    "readme": null,
     "bgm": {
       "__uuid__": "3b122530-8a5f-4dda-bca1-2240410c29c3"
+    },
+    "author": "大掌教",
+    "authorLb": {
+      "__id__": 13
+    },
+    "wechatLb": {
+      "__id__": 15
     },
     "_id": "0diDNEoo1H5LU5rfUC8jKA"
   }

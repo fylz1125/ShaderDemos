@@ -1,100 +1,58 @@
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class Menu extends cc.Component {
 
-    @property(cc.ScrollView)
-    readme: cc.ScrollView = null;
-
     @property({
-        type: cc.AudioClip
+        type: cc.AudioClip,
+        displayName: "背景音乐"
     })
     bgm: cc.AudioClip = null;
 
-    currentSceneIndex: number = 0;
-    sceneList: string[] = new Array<string>();
+    @property({
+        displayName: "作者",
+        visible: false
+    })
+    author = "大掌教";
+
+    @property({
+        type: cc.Label,
+        displayName: "作者"
+    })
+    authorLb: cc.Label = null;
+
+    @property({
+        type: cc.Label,
+        displayName: "公众号ID"
+    })
+    wechatLb: cc.Label = null;
+
 
     // 初始化
     onLoad() {
         cc.debug.setDisplayStats(true);
         cc.game.addPersistRootNode(this.node);
-
         cc.audioEngine.playMusic(this.bgm, true);
-        // 初始化场景数组
-        // let scenes = cc.game._sceneInfos;//隐藏属性，拿过来用
-        // let amazing: string[] = new Array<string>();
-        // for (let i = 0; i < scenes.length; ++i){
-        //     let url = scenes[i].url as string;
-        //     if (url.search(/AmazingEffects/) == -1) {
-        //         let tmp = url.replace('db://assets/Scene/', '').replace('.fire', '');
-        //         if (tmp === 'StartScene') {
-        //             this.sceneList.unshift(tmp);
-        //         } else {
-        //             this.sceneList.push(tmp);
-        //         }
-        //     } else {
-        //         let tmp = url.replace('db://assets/Scene/AmazingEffects/', '').replace('.fire', '');
-        //         amazing.push(tmp);
-        //     }
-        // }
-        // this.sceneList = this.sceneList.concat(amazing);
-        
-        // // 说明文档必须要和场景同名
-        // let currentSceneName = this.sceneList[this.currentSceneIndex];
-        // cc.log(this.sceneList);
-        // this.loadInstruction(currentSceneName);
-        // this.setSceneName(currentSceneName);
-    }
+        this.authorLb.string = this.author;
 
-    loadInstruction(url: string) {
-        let self = this;
-        cc.loader.loadRes('readme/' + url, function(err, txt) {
-            if (err) {
-                cc.log('加载说明文件出错');
-                return;
-            }
-        });
-    }
-
-    showReadme() {
-        this.readme.node.active = !this.readme.node.active;
-        if (this.readme.node.active) {
-            this.readme.scrollToTop();
-        }
-    }
-
-    nextScene() {
-        this.currentSceneIndex++;
-        if (this.currentSceneIndex >= this.sceneList.length) {
-            this.currentSceneIndex = this.sceneList.length - 1;
-            return;
-        }
-        let scene = this.sceneList[this.currentSceneIndex];
-        this.setSceneName(scene);
-        cc.director.loadScene(scene,this.onLoadSceneFinish.bind(this));
-    }
-
-    onLoadSceneFinish() {
-        let rdfile = this.sceneList[this.currentSceneIndex];
-        this.loadInstruction(rdfile);
-    }
-
-    preScene() {
-        this.currentSceneIndex--;
-        if (this.currentSceneIndex < 0) {
-            this.currentSceneIndex = 0;
-            return;
-        }
-        let scene = this.sceneList[this.currentSceneIndex];
-        this.setSceneName(scene);
-        cc.director.loadScene(scene,this.onLoadSceneFinish.bind(this));
-    }
-    
-    setSceneName(name:string) {
+        let lbAction = cc.repeatForever(
+            cc.sequence(
+                cc.scaleTo(1, 1.1),
+                cc.scaleTo(1, 1.0),
+                cc.scaleTo(1, 0.9),
+                cc.scaleTo(1, 1.0)
+            )
+        );
+        let finished = cc.callFunc(function () { 
+            this.authorLb.node.runAction(lbAction)
+            this.wechatLb.node.runAction(cc.spawn(cc.scaleTo(1,1.0),cc.rotateBy(1,720)));
+        }, this);
+        let lbSpawn = cc.spawn(cc.scaleTo(1.5, 1.0).easing(cc.easeSineIn()), cc.fadeTo(1.5, 255).easing(cc.easeSineIn()));
+        let lbSequence = cc.sequence(lbSpawn, finished,);
+        this.authorLb.node.runAction(lbSequence);
     }
 
 
     // 每帧更新函数
     // update(dt) {}
 }
- 
